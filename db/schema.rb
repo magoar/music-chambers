@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_135031) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_140723) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,11 +34,66 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_135031) do
     t.index ["festival_id"], name: "index_groups_on_festival_id"
   end
 
+  create_table "members", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "musician_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_members_on_group_id"
+    t.index ["musician_id"], name: "index_members_on_musician_id"
+  end
+
+  create_table "musician_requirements", force: :cascade do |t|
+    t.bigint "musician_id", null: false
+    t.bigint "requirement_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["musician_id"], name: "index_musician_requirements_on_musician_id"
+    t.index ["requirement_id"], name: "index_musician_requirements_on_requirement_id"
+  end
+
   create_table "musicians", force: :cascade do |t|
     t.string "name"
     t.string "instrument"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rehearsals", force: :cascade do |t|
+    t.date "rehearsal_date"
+    t.time "start_time"
+    t.bigint "festival_id", null: false
+    t.bigint "room_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["festival_id"], name: "index_rehearsals_on_festival_id"
+    t.index ["group_id"], name: "index_rehearsals_on_group_id"
+    t.index ["room_id"], name: "index_rehearsals_on_room_id"
+  end
+
+  create_table "requirements", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "room_requirements", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "requirement_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requirement_id"], name: "index_room_requirements_on_requirement_id"
+    t.index ["room_id"], name: "index_room_requirements_on_room_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.integer "size"
+    t.bigint "festival_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["festival_id"], name: "index_rooms_on_festival_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +110,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_135031) do
 
   add_foreign_key "festivals", "users"
   add_foreign_key "groups", "festivals"
+  add_foreign_key "members", "groups"
+  add_foreign_key "members", "musicians"
+  add_foreign_key "musician_requirements", "musicians"
+  add_foreign_key "musician_requirements", "requirements"
+  add_foreign_key "rehearsals", "festivals"
+  add_foreign_key "rehearsals", "groups"
+  add_foreign_key "rehearsals", "rooms"
+  add_foreign_key "room_requirements", "requirements"
+  add_foreign_key "room_requirements", "rooms"
+  add_foreign_key "rooms", "festivals"
 end
