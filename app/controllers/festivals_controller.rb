@@ -14,8 +14,15 @@ class FestivalsController < ApplicationController
   end
 
   def show
+    render layout: "workspace"
   end
 
   def update
+  end
+
+  private
+
+  def find_festival
+    @festival = Festival.find(params[:id])
   end
 end

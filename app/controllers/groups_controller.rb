@@ -1,4 +1,9 @@
 class GroupsController < ApplicationController
+  layout "workspace"
+
+  def index
+  end
+
   def create
   end
 

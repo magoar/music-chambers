@@ -1,4 +1,9 @@
 class MusiciansController < ApplicationController
+  layout "workspace"
+
+  def index
+  end
+  
   def create
   end
 
