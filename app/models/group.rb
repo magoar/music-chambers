@@ -3,5 +3,5 @@ class Group < ApplicationRecord
   has_many :rehearsals
   has_many :members
   has_many :musicians, through: :members
-  has_many :requirements, through: :musicians
+  has_many :requirements, -> { distinct }, through: :musicians
 end
