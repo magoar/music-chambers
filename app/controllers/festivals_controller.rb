@@ -17,4 +17,10 @@ class FestivalsController < ApplicationController
 
   def update
   end
+
+  private
+
+  def find_festival
+    @festival = Festival.find(params[:id])
+  end
 end
