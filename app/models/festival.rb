@@ -1,7 +1,7 @@
 class Festival < ApplicationRecord
   belongs_to :user
-  has_many :rooms
-  has_many :groups
-  has_many :musicians, through: :groups
-  has_many :rehearsals
+  has_many :rooms, dependent: :destroy
+  has_many :groups, dependent: :destroy
+  has_many :musicians, through: :groups, dependent: :destroy
+  has_many :rehearsals, dependent: :destroy
 end
