@@ -1,2 +1,24 @@
-<h1>Festivals#index</h1>
-<p>Find me in app/views/festivals/index.html.erb</p>
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <h1 class="my-3">My Festivals</h1>
+    <button type="button" class="btn btn-success my-3"><i class="fa-solid fa-plus fa-beat"></i> New Festival</button>
+  </div>
+
+  <% @festivals.each do |festival| %>
+
+  <div class="notification">
+    <img src='' class="avatar-large" />
+    <div class="notification-content">
+      <p><small><%= festival.start_date %></small></p>
+      <p><strong><%= festival.name %></strong>. <%= festival.location %></p>
+    </div>
+
+    <div class="notification-actions">
+      <a href="#">Edit <i class="fas fa-pencil-alt"></i></a>
+      <a href="#">Delete <i class="far fa-trash-alt"></i></a>
+    </div>
+  </div>
+
+  <% end %>
+
+</div>

@@ -1,8 +1,10 @@
 class FestivalsController < ApplicationController
   def index
+    @festivals = Festival.all
   end
 
   def new
+    @festival = Festival.new
   end
 
   def create
