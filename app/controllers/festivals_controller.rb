@@ -12,6 +12,7 @@ class FestivalsController < ApplicationController
   end
 
   def show
+    render layout: "workspace"
   end
 
   def update
