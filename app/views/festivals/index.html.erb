@@ -16,7 +16,7 @@
     <img src='https://npr.brightspotcdn.com/dims4/default/6adaacc/2147483647/strip/true/crop/4000x2668+0+0/resize/1760x1174!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fipr%2Ffiles%2F202006%2Fjanine_jansen_new_york_phil.jpg' class="avatar-large" />
     <div class="notification-content">
       <p><small><%= festival.start_date.strftime("%b %d, %Y") if festival.start_date %></small></p>
-      <p><strong><%= festival.name.capitalize %></strong>.<%= festival.location %></p>
+      <p><strong><%= festival.name.capitalize %></strong>. <%= festival.location %></p>
     </div>
 
     <div class="notification-actions">
