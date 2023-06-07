@@ -31,3 +31,9 @@
   min-height: 150vh;
   grid-template-rows: auto auto 1fr auto;
 }
+
+.application-page-container {
+  display: grid;
+  min-height: 150vh;
+  grid-template-rows: auto 1fr auto;
+}
