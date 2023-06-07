@@ -1,5 +1,5 @@
 <div class="container bg-white p-4 border">
-  <%= simple_form_for(@festival) do |f| %>
+  <%= simple_form_for([@festival, @room]) do |f| %>
     <%= f.input :name %>
     <%= f.input :size %>
     <%= f.submit %>
