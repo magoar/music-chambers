@@ -9,6 +9,7 @@ class MusiciansController < ApplicationController
 
   def create
     @musician = Musician.new(musician_params)
+    @musician.festival = @festival
     @musician.save
     redirect_to festival_musicians_path(@festival), status: :see_other
   end
