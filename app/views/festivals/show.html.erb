@@ -1,10 +1,18 @@
 <h1>Festivals#show</h1>
 <p>Find me in app/views/festivals/show.html.erb</p>
-<%= simple_form_for(@festival) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :location %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.input :slots_per_day %>
-  <%= f.submit %>
-<% end %>
+<div class="container infos-container">
+
+  <div class="row">
+
+    <div class="col-12 col-lg-8">
+      <%# RENDER CONTENT PARTIAL  HERE! %>
+      <%= render "content" %>
+    </div>
+
+    <div id="form" class="col-12 col-lg-4">
+      <%# RENDER FORM PARTIAL  HERE! %>
+      <%= render "form" %>
+    </div>
+
+  </div>
+</div>

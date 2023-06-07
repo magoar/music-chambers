@@ -1,4 +1,4 @@
-<%= simple_form_for(@musician) do |f| %>
+<%= simple_form_for([@festival, @musician]) do |f| %>
   <%= f.input :name %>
   <%= f.input :instrument %>
   <%= f.submit %>
