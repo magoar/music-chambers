@@ -111,13 +111,13 @@ p Group.last.valid?
 p "Assigning each musician some groups"
 2.times do
   Musician.all.each do |n|
-    group_to_assign = Group.first
-
-    Group.all.each do |g|
+    valid_groups = Group.all.reject { |group| group.musicians.include?(n) }
+    group_to_assign = valid_groups.first
+    valid_groups.each do |g|
       group_to_assign = g if group_to_assign.musicians.count == 8
     end
 
-    Group.all.shuffle.each do |g|
+    valid_groups.shuffle.each do |g|
       group_to_assign = g if g.musicians.count < 3
     end
     group_to_assign = Group.find_by(id: group_to_assign[:id])
@@ -135,3 +135,10 @@ Group.all.each do |n|
   p n.musicians.count
 end
 p Member.last.valid?
+
+Group.all.each do |n|
+  p "The Group #{n.name} has the following members:"
+  n.musicians.each do |m|
+    p m.name
+  end
+end
