@@ -15,6 +15,7 @@ class MusiciansController < ApplicationController
 
   def destroy
     @musician = Musician.find(params[:id])
+    @festival = @musician.festival
     @musician.destroy
     redirect_to festival_musicians_path(@festival), status: :see_other
   end

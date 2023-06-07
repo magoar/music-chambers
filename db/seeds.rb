@@ -75,7 +75,8 @@ p "Creating 20 Musicians"
 20.times do
   Musician.create(
     name: Faker::Movies::StarWars.unique.character,
-    instrument: "lightsaber"
+    instrument: "lightsaber",
+    festival: Festival.first
   )
 end
 p Musician.last.valid?
