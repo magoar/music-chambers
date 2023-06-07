@@ -8,7 +8,9 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.festival = @festival
     @group.save
+    redirect_to festival_groups_path(@festival), status: :see_other
   end
 
   def destroy
