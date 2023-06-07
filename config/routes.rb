@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   resources :festivals do
     resources :rooms, only: [:index, :create, :update]
     resources :musicians, only: [:index, :create, :update]
-    resources :groups, only: [:index, :create, :update, :destroy]
+    resources :groups, only: [:index, :create, :update]
   end
   resources :musicians, only: [:destroy]
   resources :rooms, only: [:destroy]
+  resources :groups, only: [:destroy]
 end
