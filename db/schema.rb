@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_140723) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_141256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_140723) do
     t.string "instrument"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "festival_id", null: false
+    t.index ["festival_id"], name: "index_musicians_on_festival_id"
   end
 
   create_table "rehearsals", force: :cascade do |t|
@@ -114,6 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_140723) do
   add_foreign_key "members", "musicians"
   add_foreign_key "musician_requirements", "musicians"
   add_foreign_key "musician_requirements", "requirements"
+  add_foreign_key "musicians", "festivals"
   add_foreign_key "rehearsals", "festivals"
   add_foreign_key "rehearsals", "groups"
   add_foreign_key "rehearsals", "rooms"
