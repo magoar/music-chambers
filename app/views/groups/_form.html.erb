@@ -1,4 +1,4 @@
-<div class="container bg-white p-4 border">
+<div class="container form-container bg-white p-4 border">
   <%= simple_form_for([@festival, @group]) do |f| %>
     <%= f.input :name %>
     <%= f.association :musicians, as: :check_boxes %>
