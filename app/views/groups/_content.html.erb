@@ -1,12 +1,44 @@
+<div class="header p-3">
+    <div class="header-content d-flex flex-column">
+      <div class="row">
+        <div class="col-5" >
+             <i class="fa-solid fa-users pe-2"></i><span>Group</span>
+        </div>
+        <div class="col-4" >
+             <i class="fa-solid fa-user pe-2"></i><span>Musicians</span>
+        </div>
+        <div class="col-3">
+            <i class="fa-solid fa-circle-exclamation pe-2"></i><span>Requirements</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+
+      <a href=""></a>
+      <a href=""></i></a>
+
+    </div>
+  </div>
+
+
+
 <% @groups.each do |group| %>
 
  <div class="notification p-3">
     <div class="notification-content d-flex flex-column">
       <div class="row">
-        <div class="col-6" >
+        <div class="col-5" >
           <h5 style= "margin: 0"><%= group.name %></h5>
         </div>
-        <div class="col-6">
+        <div class="col-4">
+
+            <% group.musicians.each do |musician| %>
+              <p> <%= musician.name %> </p>
+            <% end %>
+
+        </div>
+        <div class="col-3">
           <p>
             <% group.requirements.each do |requirement| %>
               <% if requirement %>
