@@ -76,7 +76,7 @@ p "Creating 20 Musicians"
   Musician.create(
     name: Faker::Movies::StarWars.unique.character,
     instrument: "lightsaber",
-    festival: Festival.first
+    festival: Festival.find_by(name: "John Williams revisited")
   )
 end
 p Musician.last.valid?

@@ -1,45 +1,44 @@
-.notification {
+.header {
   display: flex;
   align-items: center;
   margin-bottom: 8px;
-  background: white;
+  background: black;
   padding: 8px 16px;
-  border: 1px solid rgb(235,235,235);
+  border: none;
+  color:#e8e8e8
 }
 
-.notification .notification-content {
+.header .header-content {
 
   flex-grow: 1;
   padding: 0 24px;
 }
 
-.notification p {
+.header p {
   margin: 0;
   line-height: 1.4;
 }
 
-.notification small {
+.header small {
   color: #999999;
   font-weight: bold;
 }
-.notification .notification-actions {
+.header .header-actions {
   opacity: 0;
   display: flex;
   transition: ease .3s;
 }
 
-.notification:hover .notification-actions {
+.header:hover .header-actions {
   opacity: 1;
 }
 
-.notification .notification-actions a {
+.header .header-actions a {
   color: #999999;
   margin-left: 16px;
   font-size: 14px;
 }
 
-.notification .notification-actions a:hover {
+.header .header-actions a:hover {
   color: #555555;
 }
-
-
