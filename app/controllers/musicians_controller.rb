@@ -32,5 +32,5 @@ end
 private
 
 def musician_params
-  params.require(:musician).permit(:name, :instrument)
+  params.require(:musician).permit(:name, :instrument, requirement_ids: [])
 end
