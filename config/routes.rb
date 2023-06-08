@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :groups, only: [:index, :create, :update]
     resources :schedules, only: [:index]
   end
-  resources :musicians, only: [:destroy]
+  resources :musicians, only: [:destroy, :index, :update]
   resources :rooms, only: [:destroy]
   resources :groups, only: [:destroy]
 end
