@@ -5,7 +5,7 @@
         <%= f.input :name %>
         <%= f.input :instrument %>
         <%= f.association :requirements, as: :check_boxes %>
-        <%= f.submit %>
+        <%= f.submit "Add", class: "btn btn-success" %>
       <% end %>
     </div>
 </div>
