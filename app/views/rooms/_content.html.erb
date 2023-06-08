@@ -34,9 +34,14 @@
             <p class=ps-3><%= room.size %></p>
           </div>
           <div class="col-5">
-            <%room.requirements.each do |requirement| %>
-            <p><%= requirement.name %></p>
+            <p>
+            <% room.requirements.each do |requirement| %>
+              <% if requirement %>
+                <span class="badge rounded-pill instrument-pill"><%= requirement.name if requirement.name == "piano" %></span>
+                <span class="badge rounded-pill need-pill"><%= requirement.name if requirement.name == "wheelchair" %></span>
+              <% end %>
             <% end %>
+          </p>
           </div>
         </div>
     </div>
