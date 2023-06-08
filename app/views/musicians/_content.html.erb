@@ -1,6 +1,7 @@
 
 <% @musicians.each do |musician| %>
-  <div class="notification p-3" data-controller="edit-musician">
+<div data-controller="edit-musician">
+  <div class="notification p-3">
     <div class="notification-content d-flex flex-column">
       <div class="row">
         <div class="col-6" >
@@ -25,12 +26,12 @@
          <i class="far fa-trash-alt"></i>
       <% end %>
     </div>
-
-    <%= simple_form_for([@festival, @musician], html: { class: "d-none", data: { edit_musician_target: "form", action: "submit->edit-musician#update" } }) do |f| %>
+  </div>
+     <%= simple_form_for([@festival, @musician], html: { class: "d-none", data: { edit_musician_target: "form", action: "submit->edit-musician#update" } }) do |f| %>
       <%= f.input :name %>
       <%= f.input :instrument %>
       <%= f.submit %>
     <% end %>
-  </div>
+</div>
 
  <% end %>

@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["actions", "form"]
 
   displayForm(event) {
+    event.preventDefault()
     this.actionsTarget.classList.add("d-none")
     this.formTarget.classList.remove("d-none")
   }
