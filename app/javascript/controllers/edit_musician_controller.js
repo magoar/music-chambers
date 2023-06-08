@@ -2,10 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="edit-musician"
 export default class extends Controller {
-  static targets = ["actions", "form"]
+  static targets = ["actions", "form", "card"]
 
-  displayForm(event) {
-    event.preventDefault()
+  displayForm() {
     this.actionsTarget.classList.add("d-none")
     this.formTarget.classList.remove("d-none")
   }
@@ -17,9 +16,10 @@ export default class extends Controller {
       headers: { "Accept": "text/plain" },
       body: new FormData(this.formTarget)
     })
+
       .then(response => response.text())
       .then((data) => {
-        console.log(data)
+        this.cardTarget.outerHTML = data
       })
   }
 }

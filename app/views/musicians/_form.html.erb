@@ -2,6 +2,6 @@
   <%= simple_form_for([@festival, @musician]) do |f| %>
     <%= f.input :name %>
     <%= f.input :instrument %>
-    <%= f.submit %>
+    <%= f.submit "Add", class: "btn btn-success" %>
   <% end %>
 </div>

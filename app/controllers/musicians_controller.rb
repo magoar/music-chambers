@@ -28,14 +28,13 @@ class MusiciansController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to festival_musicians_path }
-      format.text { render partial: "movies/movie_infos", locals: { movie: @musician }, formats: [:html] }
+      format.text { render partial: "musicians/musician_row", locals: { musician: @musician }, formats: [:html] }
     end
   end
-
 end
 
 private
 
 def musician_params
-  params.require(:musician).permit(:name, :instrument)
+  params.require(:musician).permit(:name, :instrument, requirement_ids: [])
 end

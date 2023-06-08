@@ -1,37 +1,6 @@
 
-<% @musicians.each do |musician| %>
-<div data-controller="edit-musician">
-  <div class="notification p-3">
-    <div class="notification-content d-flex flex-column">
-      <div class="row">
-        <div class="col-6" >
-            <h5 style= "margin: 0"><%= musician.name %> </h5>
-          </div>
-          <div class="col-3">
-            <p><%= musician.instrument %></p>
-          </div>
-          <div class="col-3">
-            <%musician.requirements.each do |requirement| %>
-            <p><%= requirement.name %></p>
-            <% end %>
-          </div>
-        </div>
-    </div>
+<% musicians.each do |musician| %>
 
-    <div class="notification-actions" data-edit-musician-target="actions">
-
-      <a href="#"> <i class="fas fa-pencil-alt" data-action="click->edit-musician#displayForm"></i></a>
-
-      <%= link_to musician_path(musician), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-         <i class="far fa-trash-alt"></i>
-      <% end %>
-    </div>
-  </div>
-     <%= simple_form_for([@festival, @musician], html: { class: "d-none", data: { edit_musician_target: "form", action: "submit->edit-musician#update" } }) do |f| %>
-      <%= f.input :name %>
-      <%= f.input :instrument %>
-      <%= f.submit %>
-    <% end %>
-</div>
+  <%= render "musician_row", musician: musician %>
 
  <% end %>
