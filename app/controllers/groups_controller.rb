@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   layout "workspace"
 
   def index
-    @groups = Group.all
+    @groups = Group.where(festival_id: @festival)
     @group = Group.new
   end
 

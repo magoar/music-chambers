@@ -4,7 +4,8 @@
       <%= simple_form_for([@festival, @room]) do |f| %>
         <%= f.input :name %>
         <%= f.input :size %>
-        <%= f.submit %>
+        <%= f.association :requirements, :label => "Facilities", as: :check_boxes  %>
+        <%= f.submit class: "btn btn-success" %>
       <% end %>
     </div>
 </div>

@@ -2,8 +2,8 @@ class MusiciansController < ApplicationController
   layout "workspace"
 
   def index
-    @musicians = Musician.all
     @festival = Festival.find(params[:festival_id])
+    @musicians = Musician.where(festival_id: @festival)
     @musician = Musician.new
   end
 

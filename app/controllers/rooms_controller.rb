@@ -2,8 +2,8 @@ class RoomsController < ApplicationController
   layout "workspace"
 
   def index
-    @rooms = Room.all
     @festival = Festival.find(params[:festival_id])
+    @rooms = Room.where(festival_id: @festival)
     @room = Room.new
   end
 
