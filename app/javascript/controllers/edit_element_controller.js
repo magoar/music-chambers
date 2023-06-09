@@ -7,6 +7,7 @@ export default class extends Controller {
   displayForm() {
     this.actionsTarget.classList.add("d-none")
     this.formTarget.classList.remove("d-none")
+    this.closeTarget.classList.add("d-none")
   }
   update(event) {
     event.preventDefault()

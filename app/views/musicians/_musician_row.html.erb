@@ -1,4 +1,4 @@
-<div data-controller="edit-musician" data-edit-musician-target="card">
+<div data-controller="edit-element" data-edit-element-target="card">
   <div class="notification p-3">
     <div class="notification-content d-flex flex-column">
       <div class="row">
@@ -19,19 +19,20 @@
         </div>
     </div>
 
-    <div class="notification-actions" data-edit-musician-target="actions">
+    <div class="notification-actions" data-edit-element-target="actions">
 
-      <a><i class="fas fa-pencil-alt" data-action="click->edit-musician#displayForm"></i></a>
+      <a><i class="fas fa-pencil-alt" data-action="click->edit-element#displayForm"></i></a>
 
       <%= link_to musician_path(musician), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
          <i class="far fa-trash-alt"></i>
       <% end %>
     </div>
   </div>
-     <%= simple_form_for([@festival, musician], html: { class: "d-none p-3 bg-light mb-2", data: { edit_musician_target: "form", action: "submit->edit-musician#update" } }) do |f| %>
+     <%= simple_form_for([@festival, musician], html: { class: "d-none p-3 bg-light mb-2", data: { edit_element_target: "form", action: "submit->edit-element#update" } }) do |f| %>
       <%= f.input :name %>
       <%= f.input :instrument %>
       <%= f.association :requirements, as: :check_boxes %>
-      <%= f.submit "Update", class: "btn btn-success" %>
+      <%= f.submit "Save", class: "btn btn-success" %>
+      <button data-edit-element-target="close" class="btn btn-secondary">Close</button>
     <% end %>
 </div>
