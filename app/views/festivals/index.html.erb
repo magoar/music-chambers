@@ -1,32 +1,65 @@
 <div class="container">
-  <div class="d-flex justify-content-between">
-    <h1 class="my-3">My Festivals</h1>
+  <div class="d-flex justify-content-between m-3">
+    <h2 class="my-3 ">My Festivals</h2>
 
       <!-- Button trigger modal -->
 
     <button type="button" class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#festivalModal">
-      <i class="fa-solid fa-plus fa-beat"></i>New Festival
+      <i class="fa-solid fa-plus fa-beat pe-1"></i> New Festival
     </button>
 
   </div>
 
+
+  <div class="header p-3">
+    <div class="header-content d-flex flex-column">
+      <div class="row">
+        <div class="col-5" >
+             <i class="fa-solid fa-icons pe-2 ps-2"></i><span>Festival Name</span>
+          </div>
+          <div class="col-3">
+            <i class="fa-solid fa-location-dot pe-2 ps-2"></i><span>Location</span>
+          </div>
+          <div class="col-4">
+            <i class="fa-regular fa-calendar pe-2"></i><span>Date</span>
+          </div>
+        </div>
+    </div>
+
+    <div class="header-actions">
+
+      <a href=""></a>
+      <a href=""></i></a>
+
+    </div>
+  </div>
+
   <% @festivals.each do |festival| %>
     <%= link_to festival_path(festival), class: "festival-link" do %>
-      <div class="notification">
+      <div class="notification festival-index-card">
         <img src='https://npr.brightspotcdn.com/dims4/default/6adaacc/2147483647/strip/true/crop/4000x2668+0+0/resize/1760x1174!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fipr%2Ffiles%2F202006%2Fjanine_jansen_new_york_phil.jpg' class="avatar-large" />
         <div class="notification-content">
-          <p><small><%= festival.start_date.strftime("%b %d, %Y") if festival.start_date %></small></p>
-          <p><strong><%= festival.name.capitalize %></strong>. <%= festival.location %></p>
+          <div class="row">
+            <div class="col-5">
+              <p><strong><%= festival.name.capitalize %></strong>
+            </div>
+            <div class="col-3">
+              <%= festival.location %></p>
+            </div>
+            <div class="col-4">
+              <p><small><%= festival.start_date.strftime("%b %d, %Y") if festival.start_date %></small></p>
+            </div>
+          </div>
         </div>
 
         <div class="notification-actions">
 
           <%= link_to festival_path(festival) do %>
-            Edit <i class="fas fa-pencil-alt"></i>
+             <i class="fas fa-pencil-alt"></i>
           <% end %>
 
           <%= link_to festival_path(festival), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-            Delete <i class="far fa-trash-alt"></i>
+             <i class="far fa-trash-alt"></i>
           <% end %>
 
         </div>

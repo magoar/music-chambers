@@ -2,8 +2,8 @@ class FestivalsController < ApplicationController
   before_action :find_festival, only: [:show, :destroy, :update]
 
   def index
-    @festivals = Festival.all
     @festival = Festival.new
+    @festivals = Festival.all
   end
 
   def create
