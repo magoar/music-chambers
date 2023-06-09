@@ -72,10 +72,23 @@ p RoomRequirement.last.valid?
 
 # Create 20 Musicians for Festival 1
 p "Creating 20 Musicians"
-20.times do
+Musician.create(
+  name: Faker::Movies::StarWars.unique.character,
+  instrument: "guitar",
+  festival: Festival.find_by(name: "John Williams revisited")
+)
+2.times do
   Musician.create(
     name: Faker::Movies::StarWars.unique.character,
-    instrument: "lightsaber",
+    instrument: "piano",
+    festival: Festival.find_by(name: "John Williams revisited")
+  )
+end
+
+17.times do
+  Musician.create(
+    name: Faker::Movies::StarWars.unique.character,
+    instrument: Faker::Music.instrument,
     festival: Festival.find_by(name: "John Williams revisited")
   )
 end
@@ -83,26 +96,28 @@ p Musician.last.valid?
 
 # Adding Needs Piano wheelchair to some Musicians
 p "Some Musicians need wheelchairs and/or pianos"
-musicians_with_needs = Musician.all.sample(5)
-musicians_with_needs.first(4).each do |n|
+musicians_with_needs = Musician.where(instrument: "piano")
+musicians_with_needs.each do |n|
   MusicianRequirement.create(
     musician: n,
     requirement: Requirement.find_by(name: "piano")
   )
 end
-musicians_with_needs.last(2).each do |n|
-  MusicianRequirement.create(
-    musician: n,
-    requirement: Requirement.find_by(name: "wheelchair")
-  )
-end
-p MusicianRequirement.all[3].valid?
+MusicianRequirement.create(
+  musician: musicians_with_needs.last,
+  requirement: Requirement.find_by(name: "wheelchair")
+)
+MusicianRequirement.create(
+  musician: Musician.find_by(instrument: "guitar"),
+  requirement: Requirement.find_by(name: "wheelchair")
+)
+p MusicianRequirement.last.valid?
 
 # Create 10 groups for Festival 1
 p "Creating 10 Groups"
 10.times do
   Group.create(
-    name: Faker::Movies::StarWars.unique.vehicle,
+    name: Faker::Music::RockBand.unique.name,
     festival: Festival.find_by(name: "John Williams revisited")
   )
 end
