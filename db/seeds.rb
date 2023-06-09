@@ -29,7 +29,8 @@ Festival.create(
   location: "Berlin",
   start_date: Date.parse('01-12-2023'),
   end_date: Date.parse('12-12-2023'),
-  slots_per_day: 4
+  slots_per_day: 4,
+  rehearsals_per_group: 3
 )
 Festival.create(
   name: "Violent Violins 2018",
@@ -37,7 +38,8 @@ Festival.create(
   location: "Venezia",
   start_date: Date.parse('01-12-2018'),
   end_date: Date.parse('12-12-2023'),
-  slots_per_day: 3
+  slots_per_day: 3,
+  rehearsals_per_group: 3
 )
 p Festival.last.valid?
 

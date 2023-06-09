@@ -35,22 +35,28 @@
 
   <% end %>
 
-<!-- Modal -->
-<div class="modal fade" id="festivalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">What's the name of the festival?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for(@festival) do |f| %>
-          <%= f.input :name %>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <%= f.submit class: "btn btn-success"%>
-           </div>
-        <% end %>
+  <!-- Modal -->
+  <div class="modal fade" id="festivalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">What's the name of the festival?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for(@festival) do |f| %>
+            <%= f.input :name %>
+            <%= f.input :location %>
+            <%= f.input :start_date %>
+            <%= f.input :end_date %>
+            <%= f.input :slots_per_day %>
+            <%= f.input :rehearsals_per_group %>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <%= f.submit class: "btn btn-success"%>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
