@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="notification-actions" data-edit-element-target="actions">
+    <div class="notification-actions <%= 'd-none' if group.errors.any? %>" data-edit-element-target="actions">
 
       <i class="fas fa-pencil-alt" data-action="click->edit-element#displayForm"></i>
 
@@ -34,7 +34,7 @@
       <% end %>
     </div>
   </div>
-  <%= simple_form_for([@festival, group], html: { class: "d-none p-3 bg-light mb-2", data: { edit_element_target: "form", action: "submit->edit-element#update" } }) do |f| %>
+  <%= simple_form_for([@festival, group], html: { class: group.errors.any? ? "p-3 bg-light mb-2" : "d-none p-3 bg-light mb-2", data: { edit_element_target: "form", action: "submit->edit-element#update" } }) do |f| %>
     <%= f.input :name %>
     <%= f.association :musicians, as: :check_boxes %>
     <%= f.submit "Save", class: "btn btn-success" %>

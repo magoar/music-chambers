@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="notification-actions" data-edit-element-target="actions">
+    <div class="notification-actions <%= 'd-none' if musician.errors.any? %>" data-edit-element-target="actions">
 
       <a><i class="fas fa-pencil-alt" data-action="click->edit-element#displayForm"></i></a>
 
@@ -28,7 +28,7 @@
       <% end %>
     </div>
   </div>
-     <%= simple_form_for([@festival, musician], html: { class: "d-none p-3 bg-light mb-2", data: { edit_element_target: "form", action: "submit->edit-element#update" } }) do |f| %>
+     <%= simple_form_for([@festival, musician], html: { class: musician.errors.any? ? " p-3 bg-light mb-2" : "d-none p-3 bg-light mb-2", data: { edit_element_target: "form", action: "submit->edit-element#update" } }) do |f| %>
       <%= f.input :name %>
       <%= f.input :instrument %>
       <%= f.association :requirements, as: :check_boxes %>
