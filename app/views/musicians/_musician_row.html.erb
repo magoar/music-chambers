@@ -9,8 +9,11 @@
             <p><%= musician.instrument %></p>
           </div>
           <div class="col-4">
-            <%musician.requirements.each do |requirement| %>
-            <p><%= requirement.name %></p>
+            <% musician.requirements.each do |requirement| %>
+              <% if requirement %>
+                <span class="badge rounded-pill instrument-pill"><%= requirement.name if requirement.name == "piano" %></span>
+                <span class="badge rounded-pill need-pill"><%= requirement.name if requirement.name == "wheelchair" %></span>
+              <% end %>
             <% end %>
           </div>
         </div>
