@@ -1,11 +1,11 @@
 <div class="container form-container bg-white p-4 border">
-  <h3>Musician</h3>
+  <h3>Add a Musician</h3>
     <div class= "pt-3">
       <%= simple_form_for([@festival, @musician]) do |f| %>
         <%= f.input :name %>
         <%= f.input :instrument %>
         <%= f.association :requirements, as: :check_boxes %>
-        <%= f.submit "Add", class: "btn btn-success" %>
+        <%= f.submit "Save", class: "btn btn-success" %>
       <% end %>
     </div>
 </div>

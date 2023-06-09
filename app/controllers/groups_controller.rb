@@ -22,6 +22,13 @@ class GroupsController < ApplicationController
   end
 
   def update
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+
+    respond_to do |format|
+      format.html { redirect_to festival_groups_path }
+      format.text { render partial: "groups/group_row", locals: { group: @group }, formats: [:html] }
+    end
   end
 
   private
