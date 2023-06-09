@@ -2,13 +2,13 @@
   <div class="notification p-3">
     <div class="notification-content d-flex flex-column">
       <div class="row">
-        <div class="col-6" >
+        <div class="col-5" >
             <h5 style= "margin: 0"><%= musician.name %> </h5>
           </div>
           <div class="col-3">
             <p><%= musician.instrument %></p>
           </div>
-          <div class="col-3">
+          <div class="col-4">
             <%musician.requirements.each do |requirement| %>
             <p><%= requirement.name %></p>
             <% end %>
@@ -18,7 +18,7 @@
 
     <div class="notification-actions" data-edit-musician-target="actions">
 
-      <i class="fas fa-pencil-alt" data-action="click->edit-musician#displayForm"></i>
+      <a><i class="fas fa-pencil-alt" data-action="click->edit-musician#displayForm"></i></a>
 
       <%= link_to musician_path(musician), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
          <i class="far fa-trash-alt"></i>
