@@ -14,7 +14,7 @@
             <%= link_to "Rooms", festival_rooms_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_rooms_path(@festival))}" %>
           </li>
           <li>
-            <%#= link_to "Schedule", "#", class: "tab-underlined active #{"active" if current_page?(festival_path(@festival))}" %>
+            <%= link_to "Schedule", festival_schedules_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_schedules_path(@festival))}" %>
           </li>
         </ul>
       </div>

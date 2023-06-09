@@ -21,12 +21,16 @@ class MusiciansController < ApplicationController
     redirect_to festival_musicians_path(@festival), status: :see_other
   end
 
+  # redirect_to festival_musicians_path(@festival)
   def update
     @musician = Musician.find(params[:id])
     @musician.update(musician_params)
-    redirect_to festival_musicians_path(@festival)
-  end
 
+    respond_to do |format|
+      format.html { redirect_to festival_musicians_path }
+      format.text { render partial: "musicians/musician_row", locals: { musician: @musician }, formats: [:html] }
+    end
+  end
 end
 
 private
