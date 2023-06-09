@@ -5,6 +5,7 @@ input = sys.argv[1]
 
 print(input)
 
+
 from z3 import *
 
 x = Real('x')
