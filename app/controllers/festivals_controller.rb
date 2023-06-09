@@ -10,12 +10,8 @@ class FestivalsController < ApplicationController
     @festivals = current_user.festivals
     @festival = Festival.new(festival_params)
     @festival.user = current_user
-
-    if @festival.save
-      redirect_to festivals_path(@festival)
-    else
-      render :index, status: :unprocessable_entity
-    end
+    @festival.save
+    redirect_to festivals_path(@festival)
   end
 
   def destroy

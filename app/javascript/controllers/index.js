@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import CreateFestivalController from "./create_festival_controller"
-application.register("create-festival", CreateFestivalController)
-
 import EditElementController from "./edit_element_controller"
 application.register("edit-element", EditElementController)
 
