@@ -3,7 +3,7 @@ class MusiciansController < ApplicationController
 
   def index
     @festival = Festival.find(params[:festival_id])
-    @musicians = Musician.where(festival_id: @festival)
+    @musicians = @festival.musicians
     @musician = Musician.new
   end
 
