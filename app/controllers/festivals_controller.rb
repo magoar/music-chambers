@@ -2,15 +2,20 @@ class FestivalsController < ApplicationController
   before_action :find_festival, only: [:show, :destroy, :update]
 
   def index
-    @festivals = Festival.all
+    @festivals = current_user.festivals
     @festival = Festival.new
   end
 
   def create
+    @festivals = current_user.festivals
     @festival = Festival.new(festival_params)
     @festival.user = current_user
-    @festival.save
-    redirect_to festivals_path(@festival)
+
+    if @festival.save
+      redirect_to festivals_path(@festival)
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -25,6 +30,9 @@ class FestivalsController < ApplicationController
   end
 
   def update
+    @festival = Festival.find(params[:id])
+    @festival.update(festival_params)
+    redirect_to festival_path, status: :see_other
   end
 
   private
@@ -34,6 +42,6 @@ class FestivalsController < ApplicationController
   end
 
   def festival_params
-    params.require(:festival).permit(:name, :id, :start_date, :end_date, :location, :slots_per_day)
+    params.require(:festival).permit(:name, :id, :start_date, :end_date, :location, :slots_per_day, :rehearsals_per_group)
   end
 end

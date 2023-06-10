@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
 
   def index
     @festival = Festival.find(params[:festival_id])
-    @rooms = Room.where(festival_id: @festival)
+    @rooms = @festival.rooms
     @room = Room.new
   end
 
@@ -24,12 +24,16 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     @room.update(room_params)
-    redirect_to festival_rooms_path(@festival)
+
+    respond_to do |format|
+      format.html { redirect_to festival_rooms_path(@festival) }
+      format.text { render partial: "rooms/room_row", locals: { room: @room }, formats: [:html] }
+    end
   end
 end
 
 private
 
 def room_params
-  params.require(:room).permit(:name, :size)
+  params.require(:room).permit(:name, :size, requirement_ids: [])
 end

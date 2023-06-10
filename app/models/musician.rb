@@ -5,5 +5,6 @@ class Musician < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :groups, through: :members
   has_many :rehearsals, through: :groups
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, presence: true
+  validates :instrument, presence: true
 end

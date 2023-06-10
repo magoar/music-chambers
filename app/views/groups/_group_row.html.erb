@@ -1,0 +1,43 @@
+<div data-controller="edit-element" data-edit-element-target="card">
+  <div class="notification p-3">
+    <div class="notification-content d-flex flex-column">
+      <div class="row">
+        <div class="col-5" >
+          <h5 style= "margin: 0"><%= group.name %></h5>
+        </div>
+        <div class="col-4">
+
+            <% group.musicians.each do |musician| %>
+              <p> <%= musician.name %> </p>
+            <% end %>
+
+        </div>
+        <div class="col-3">
+          <p>
+            <% group.requirements.each do |requirement| %>
+              <% if requirement %>
+                <span class="badge rounded-pill instrument-pill"><%= requirement.name if requirement.name == "piano" %></span>
+                <span class="badge rounded-pill need-pill"><%= requirement.name if requirement.name == "wheelchair" %></span>
+              <% end %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="notification-actions <%= 'd-none' if group.errors.any? %>" data-edit-element-target="actions">
+
+      <i class="fas fa-pencil-alt" data-action="click->edit-element#displayForm"></i>
+
+      <%= link_to group_path(group), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the group: ?"} do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+    </div>
+  </div>
+  <%= simple_form_for([@festival, group], html: { class: group.errors.any? ? "p-3 bg-light mb-2" : "d-none p-3 bg-light mb-2", data: { edit_element_target: "form", action: "submit->edit-element#update" } }) do |f| %>
+    <%= f.input :name %>
+    <%= f.association :musicians, as: :check_boxes %>
+    <%= f.submit "Save", class: "btn btn-success" %>
+    <button data-edit-element-target="close" class="btn btn-secondary">Close</button>
+  <% end %>
+</div>

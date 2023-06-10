@@ -2,8 +2,9 @@ class GroupsController < ApplicationController
   layout "workspace"
 
   def index
-    @groups = Group.where(festival_id: @festival)
+    @groups = @festival.groups
     @group = Group.new
+    @musicians = @festival.musicians
   end
 
   def create
@@ -21,6 +22,13 @@ class GroupsController < ApplicationController
   end
 
   def update
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+
+    respond_to do |format|
+      format.html { redirect_to festival_groups_path }
+      format.text { render partial: "groups/group_row", locals: { group: @group }, formats: [:html] }
+    end
   end
 
   private
