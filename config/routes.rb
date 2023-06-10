@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :rooms, only: [:index, :create, :update]
     resources :musicians, only: [:index, :create, :update]
     resources :groups, only: [:index, :create, :update]
-    resources :schedules, only: [:index]
+    resources :schedules, only: [:index, :new]
   end
   resources :musicians, only: [:destroy, :index, :update]
   resources :rooms, only: [:destroy]
