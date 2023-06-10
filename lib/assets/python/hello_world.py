@@ -1,9 +1,12 @@
 import sys
+import json
 import z3
 
 input = sys.argv[1]
+data = json.load(input)
 
-print(input)
+print(data)
+
 
 
 from z3 import *
