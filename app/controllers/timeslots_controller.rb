@@ -11,14 +11,14 @@ class TimeslotsController < ApplicationController
   end
 
   def update
-
+    @timeslot = Timeslot.find(params[:id])
+    @timeslot.update(timeslot_params)
+    redirect_to festival_path(@festival), status: :see_other
   end
 
-end
+  private
 
-private
-
-def timeslot_params
-  params.require(:timeslot).permit(:start_time, :end_time)
-
+  def timeslot_params
+    params.require(:timeslot).permit(:start_time, :end_time)
+  end
 end
