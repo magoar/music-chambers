@@ -39,3 +39,6 @@
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
+
+# Ignore the pycachse
+/lib/assets/python/__pycache__
