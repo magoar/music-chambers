@@ -14,14 +14,16 @@
   <div class="header p-3">
     <div class="header-content d-flex flex-column">
       <div class="row">
-        <div class="col-5" >
-             <i class="fa-solid fa-icons pe-2 ps-2"></i><span>Festival Name</span>
+        <div class="col-1">
+        </div>
+        <div class="col-4" >
+             <i class="fa-solid fa-icons pe-3 "></i><span>Festival Name</span>
           </div>
           <div class="col-3">
-            <i class="fa-solid fa-location-dot pe-2 ps-2"></i><span>Location</span>
+            <i class="fa-solid fa-location-dot pe-2 ps-4"></i><span>Location</span>
           </div>
           <div class="col-4">
-            <i class="fa-regular fa-calendar pe-2"></i><span>Date</span>
+            <i class="fa-regular fa-calendar ps-1 pe-2"></i><span>Date</span>
           </div>
         </div>
     </div>
@@ -37,7 +39,11 @@
   <% @festivals.each do |festival| %>
     <%= link_to festival_path(festival), class: "festival-link" do %>
       <div class="notification festival-index-card">
-        <img src='https://npr.brightspotcdn.com/dims4/default/6adaacc/2147483647/strip/true/crop/4000x2668+0+0/resize/1760x1174!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fipr%2Ffiles%2F202006%2Fjanine_jansen_new_york_phil.jpg' class="avatar-large" />
+        <% if festival.photo.attached? %>
+          <%= cl_image_tag festival.photo.key, class: "avatar-large", height: 300, width: 400, crop: :fill %>
+        <% else %>
+          <img src='https://npr.brightspotcdn.com/dims4/default/6adaacc/2147483647/strip/true/crop/4000x2668+0+0/resize/1760x1174!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fipr%2Ffiles%2F202006%2Fjanine_jansen_new_york_phil.jpg' class="avatar-large" />
+        <% end %>
         <div class="notification-content">
           <div class="row">
             <div class="col-5">
@@ -73,17 +79,18 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">What's the name of the festival?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Festival Information</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <%= simple_form_for @festival, html: { data: { controller: "create-festival", action: "submit->create-festival#createFestival" } } do |f| %>
+          <%= simple_form_for @festival do |f| %>
             <%= f.input :name %>
             <%= f.input :location %>
             <%= f.input :start_date %>
             <%= f.input :end_date %>
             <%= f.input :slots_per_day %>
             <%= f.input :rehearsals_per_group %>
+            <%= f.input :photo, as: :file %>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <%= f.submit class: "btn btn-success"%>

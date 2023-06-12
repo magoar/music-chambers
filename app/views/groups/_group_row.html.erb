@@ -12,7 +12,7 @@
             <% end %>
 
         </div>
-        <div class="col-3">
+        <div class="col-3 ps-4">
           <p>
             <% group.requirements.each do |requirement| %>
               <% if requirement %>
@@ -27,7 +27,7 @@
 
     <div class="notification-actions <%= 'd-none' if group.errors.any? %>" data-edit-element-target="actions">
 
-      <i class="fas fa-pencil-alt" data-action="click->edit-element#displayForm"></i>
+      <a data-action="click->edit-element#displayForm"><i class="fas fa-pencil-alt" ></i></a>
 
       <%= link_to group_path(group), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the group: ?"} do %>
         <i class="far fa-trash-alt"></i>

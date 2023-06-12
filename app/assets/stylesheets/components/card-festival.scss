@@ -58,5 +58,13 @@
 
 
 .festival-index-card {
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.festival-index-card .notification-content {
+  padding: 0 20px 0 40px;
+}
+
+.notification-actions i:hover {
+  cursor: pointer;
 }

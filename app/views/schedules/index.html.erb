@@ -1,23 +1,191 @@
-<head>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+
 
 <div class="container infos-container d-flex justify-content-center">
 <%= link_to new_festival_schedule_path do %>
-  <button class = "btn btn-primary p-2 pt-3"><h3>CREATE SCHEDULE</h3></button>
+  <button class = "btn btn-success p-3">Create Schedule</button>
 <% end %>
 </div>
 
 
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="container">
+    <div class="timetable-img text-center">
+        <img src="img/content/timetable.png" alt="">
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr class="bg-light-gray">
+                    <th class="text-uppercase">Time
+                    </th>
+                    <th class="text-uppercase">Monday</th>
+                    <th class="text-uppercase">Tuesday</th>
+                    <th class="text-uppercase">Wednesday</th>
+                    <th class="text-uppercase">Thursday</th>
+                    <th class="text-uppercase">Friday</th>
+                    <th class="text-uppercase">Saturday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle">10:00 am-<div>11:30 am</div></td>
+                    <td>
+                      <div>
+                        <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Group1</span>
+                        <span class="margin-10px-top font-size14"> -> Room A</span>
+                      </div>
+                      <br>
+                      <div>
+                        <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Group2</span>
+                        <span class="margin-10px-top font-size14"> -> Room B</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Group3</span>
+                        <span class="margin-10px-top font-size14"> -> Room C</span>
+                      </div>
+                      <br>
+                      <div>
+                        <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Group4</span>
+                        <span class="margin-10px-top font-size14"> -> Room D</span>
+                      </div>
+                    </td>
+
+                    <td>
+                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="align-middle">11:30 am-<div>1:00 pm</div></td>
+                    <td>
+                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+
+                    </td>
+                    <td class="bg-light-gray">
+
+                    </td>
+                    <td>
+                        <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+
+                    </td>
+                    <td class="bg-light-gray">
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="align-middle">1:00pm-<div>3:00 pm</div></td>
+                    <td>
+                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="align-middle">3:00 pm-<div>4:30 pm</div></td>
+                    <td class="bg-light-gray">
+
+                    </td>
+                    <td>
+                        <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+
+                    </td>
+                    <td class="bg-light-gray">
+
+                    </td>
+                    <td>
+                        <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="align-middle">4:30pm-<div>6:00 pm</div></td>
+                    <td>
+                        <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+
+                    </td>
+                    <td class="bg-light-gray">
+
+                    </td>
+                    <td>
+                        <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+
+                    </td>
+                    <td>
+                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container mt-5">
+<%# <div class="container mt-5">
 	<div class="row">
 
 	  <div class="col-md-3">
@@ -189,4 +357,4 @@
           </div>
 
 	</div>
-</div>
+</div> %>

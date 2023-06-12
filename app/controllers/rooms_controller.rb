@@ -3,15 +3,19 @@ class RoomsController < ApplicationController
 
   def index
     @festival = Festival.find(params[:festival_id])
-    @rooms = @festival.rooms
+    @rooms = @festival.rooms.ordered
     @room = Room.new
   end
 
   def create
     @room = Room.new(room_params)
     @room.festival = @festival
-    @room.save
-    redirect_to festival_rooms_path(@festival), status: :see_other
+    if @room.save
+      redirect_to festival_rooms_path(@festival), status: :see_other
+    else
+      @rooms = @festival.rooms # this line instanciates the musicians of a festival again for the render
+      render :index, locals: { rooms: @rooms }, status: :unprocessable_entity
+    end
   end
 
   def destroy

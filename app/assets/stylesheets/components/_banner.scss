@@ -1,7 +1,7 @@
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 180px 0;
+  padding: 140px 0;
   display:flex;
   width: 100%;
 }
@@ -10,15 +10,29 @@
 .banner h1 {
   margin: 0;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   font-size: 60px;
   font-weight: bold;
 }
 
 .banner p {
   font-family:'PT Sans Caption', sans-serif;
-  font-size: 22px;
+  font-size: 24px;
   color: white;
-  opacity: .8;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  opacity: .9;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  margin-bottom: 0
+}
+
+.banner .btn {
+  margin-top: 70px;
+  font-size: 24px;
+  padding: 14px 20px;
+}
+
+
+
+
+.banner .container {
+  text-align: center;
 }

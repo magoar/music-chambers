@@ -1,12 +1,16 @@
 
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "banner_photo.webp" %>);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(<%= image_path "banner_photo.webp" %>);">
   <div class="container ps-4 pt-5">
     <h1>MusicChambers</h1>
     <br>
     <p>Organize chamber music festivals efficiently!</p>
-    <p>Coordinate rehearsal schedules and rooms without conflict</p>
+    <p>Coordinate rehearsal schedules and rooms without conflict.</p>
+    <%= link_to  festivals_path do %>
+      <button class= "btn btn-success ">Start Now</button>
+    <% end %>
   </div>
+
 </div>
 
 <div class="container body">
@@ -17,28 +21,24 @@
       <div class="card" >
         <i class="fa-solid fa-music"></i>
         <div class="card-body">
-          <p class="card-text">Add your festival project</p>
-          <p><%= @hello_world %></p>
+          <p class="card-text"> Start by adding your festival.</p>
         </div>
       </div>
 
       <div class="card" >
         <i class="fa-regular fa-pen-to-square "></i>
         <div class="card-body">
-          <p class="card-text">Input infos: <br> Musicians, Groups, Rooms, Timeslots.</p>
+          <p class="card-text">Customize your festival with musicians, groups, rooms and rehearsal times.</p>
         </div>
       </div>
 
       <div class="card" >
         <i class="fa-regular fa-calendar-check "></i>
         <div class="card-body">
-          <p class="card-text"><strong>MusicChambers</strong> will configure a rehearsal plan accordingly!</p>
+          <p class="card-text">MusicChambers will make the optimal rehearsal schedule for your chamber music festival.</p>
         </div>
       </div>
 
   </div>
 
-  <%= link_to festivals_path do %>
-    <button class= "btn btn-primary start-btn">Start Now!</button>
-  <% end %>
 </div>
