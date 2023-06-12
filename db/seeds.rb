@@ -19,26 +19,18 @@ p User.last.valid?
 p "Creating Piano and Wheelchair Requirements"
 Requirement.create(name: "piano")
 Requirement.create(name: "wheelchair")
+Requirement.create(name: "ConcertHall")
 p Requirement.last.valid?
 
 # Create 2 Festivals
-p "Creating 2 Festivals"
+p "Creating the John Williams Festival"
 Festival.create(
   name: "John Williams revisited",
   user: User.find_by(email: "max@web.de"),
   location: "Berlin",
   start_date: Date.parse('01-12-2023'),
-  end_date: Date.parse('12-12-2023'),
+  end_date: Date.parse('06-12-2023'),
   slots_per_day: 4,
-  rehearsals_per_group: 3
-)
-Festival.create(
-  name: "Violent Violins 2018",
-  user: User.find_by(email: "max@web.de"),
-  location: "Venezia",
-  start_date: Date.parse('01-12-2018'),
-  end_date: Date.parse('12-12-2023'),
-  slots_per_day: 3,
   rehearsals_per_group: 3
 )
 p Festival.last.valid?
@@ -72,8 +64,8 @@ RoomRequirement.create(
 )
 p RoomRequirement.last.valid?
 
-# Create 20 Musicians for Festival 1
-p "Creating 20 Musicians"
+
+p "Creating 20 Musicians for Festival 1"
 Musician.create(
   name: Faker::Movies::StarWars.unique.character,
   instrument: "guitar",
@@ -86,7 +78,6 @@ Musician.create(
     festival: Festival.find_by(name: "John Williams revisited")
   )
 end
-
 17.times do
   Musician.create(
     name: Faker::Movies::StarWars.unique.character,
@@ -96,7 +87,7 @@ end
 end
 p Musician.last.valid?
 
-# Adding Needs Piano wheelchair to some Musicians
+
 p "Some Musicians need wheelchairs and/or pianos"
 musicians_with_needs = Musician.where(instrument: "piano")
 musicians_with_needs.each do |n|
@@ -115,8 +106,8 @@ MusicianRequirement.create(
 )
 p MusicianRequirement.last.valid?
 
-# Create 10 groups for Festival 1
-p "Creating 10 Groups"
+
+p "Creating 10 Groups for Festival 1"
 10.times do
   Group.create(
     name: Faker::Music::RockBand.unique.name,
@@ -125,7 +116,7 @@ p "Creating 10 Groups"
 end
 p Group.last.valid?
 
-# Populate the groups with Musicians
+
 p "Assigning each musician some groups"
 2.times do
   Musician.all.each do |n|
@@ -146,6 +137,8 @@ p "Assigning each musician some groups"
     )
   end
 end
+
+p "Printing all the Groups  with name and size"
 Group.all.each do |n|
   p "name:"
   p n.name
@@ -154,9 +147,127 @@ Group.all.each do |n|
 end
 p Member.last.valid?
 
+p "Printing which members are in each group"
 Group.all.each do |n|
   p "The Group #{n.name} has the following members:"
   n.musicians.each do |m|
     p m.name
   end
 end
+
+
+# Creating the 2nd festival
+p "creating the testing festival"
+Festival.create(
+  name: "Violent Violins 2018",
+  user: User.find_by(email: "max@web.de"),
+  location: "Venezia",
+  start_date: Date.parse('01-12-2018'),
+  end_date: Date.parse('02-12-2018'),
+  slots_per_day: 4,
+  rehearsals_per_group: 2
+)
+
+p "creating 2 Rooms for Festival 2"
+Room.create(
+  name: "Testroom 1",
+  size: 3,
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+Room.create(
+  name: "Testroom 2",
+  size: 3,
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+
+p "giving the rooms requirements"
+RoomRequirement.create(
+  room: Room.find_by(name: "Testroom 1"),
+  requirement: Requirement.find_by(name: "wheelchair")
+)
+RoomRequirement.create(
+  room: Room.find_by(name: "Testroom 2"),
+  requirement: Requirement.find_by(name: "piano")
+)
+
+p "creating 4 Musicians"
+Musician.create(
+  name: "Jan",
+  instrument: "vocals",
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+Musician.create(
+  name: "Bob",
+  instrument: "trumpet",
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+Musician.create(
+  name: "Andria",
+  instrument: "violin",
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+Musician.create(
+  name: "Mago",
+  instrument: "piano",
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+
+p "assigning some attributes to the musicians"
+MusicianRequirement.create(
+  musician: Musician.find_by(name: "Jan"),
+  requirement: Requirement.find_by(name: "wheelchair")
+)
+MusicianRequirement.create(
+  musician: Musician.find_by(name: "Mago"),
+  requirement: Requirement.find_by(name: "piano")
+)
+
+p "making groups for the musicians"
+group1 = Group.create(
+  name: "Bob_Jan",
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+Member.create(
+  group: group1,
+  musician: Musician.find_by(name: "Bob")
+)
+Member.create(
+  group: group1,
+  musician: Musician.find_by(name: "Jan")
+)
+group2 = Group.create(
+  name: "Bob_Mago",
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+Member.create(
+  group: group2,
+  musician: Musician.find_by(name: "Bob")
+)
+Member.create(
+  group: group2,
+  musician: Musician.find_by(name: "Mago")
+)
+group3 = Group.create(
+  name: "Andria_Mago",
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+Member.create(
+  group: group3,
+  musician: Musician.find_by(name: "Andria")
+)
+Member.create(
+  group: group3,
+  musician: Musician.find_by(name: "Mago")
+)
+group4 = Group.create(
+  name: "Andria_Jan",
+  festival: Festival.find_by(name: "Violent Violins 2018")
+)
+Member.create(
+  group: group4,
+  musician: Musician.find_by(name: "Andria")
+)
+Member.create(
+  group: group4,
+  musician: Musician.find_by(name: "Jan")
+)
