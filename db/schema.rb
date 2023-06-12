@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_095818) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_143941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -127,6 +127,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_095818) do
     t.index ["festival_id"], name: "index_rooms_on_festival_id"
   end
 
+  create_table "timeslots", force: :cascade do |t|
+    t.time "start_time"
+    t.time "end_time"
+    t.bigint "festival_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["festival_id"], name: "index_timeslots_on_festival_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -154,4 +163,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_095818) do
   add_foreign_key "room_requirements", "requirements"
   add_foreign_key "room_requirements", "rooms"
   add_foreign_key "rooms", "festivals"
+  add_foreign_key "timeslots", "festivals"
 end
