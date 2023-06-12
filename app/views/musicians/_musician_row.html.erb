@@ -8,11 +8,11 @@
           <div class="col-4">
             <p class= "ps-2"><%= musician.instrument %></p>
           </div>
-          <div class="col-4 justify-text-center">
+          <div class="col-4 ps-4">
             <% musician.requirements.each do |requirement| %>
               <% if requirement %>
-                <span class="badge rounded-pill instrument-pill "><%= requirement.name if requirement.name == "piano" %></span>
-                <span class="badge rounded-pill need-pill "><%= requirement.name if requirement.name == "wheelchair" %></span>
+                <span class="badge rounded-pill instrument-pill  "><%= requirement.name if requirement.name == "piano" %></span>
+                <span class="badge rounded-pill need-pill  "><%= requirement.name if requirement.name == "wheelchair" %></span>
               <% end %>
             <% end %>
           </div>
