@@ -21,13 +21,16 @@ class SchedulesController < ApplicationController
     # the groups must be generated as an array of arrays:
     # the first element of each array is an array of the id of each musician
     # the second element of each array is an array of the attributes of each group
-    musicians_groups = @festival.groups.map do |group|
-      [group.musicians.map(&:id), group.requirements.map(&:name)]
+    groups = @festival.groups
+    musicians = @festival.musicians
+    musicians_groups = groups.map do |group|
+      [
+        group.musicians.map do |musician|
+          musicians.index(musician)
+        end,
+        group.requirements.map(&:name)
+      ]
     end
-
-    # I can probably get rid of these:
-    # rooms_count = @festival.rooms.count
-    # attributes = Requirement.all.map(&:name)
 
     schedule_constraints = {
       "rooms" => rooms_array,
@@ -42,18 +45,20 @@ class SchedulesController < ApplicationController
     python_return = `python3 lib/assets/python/ruby_z3_bridge.py '#{argument}'`
     @connection_test = python_return
 
-    # timestamp = Time.now.to_i
-    # filepath = "/lib/assets/python/#{timestamp}#{current_user.id}"
-    # filepath = Rails.root.join('lib', 'assets', 'python', 'test.json')
-    # File.write(filepath, JSON.generate(schedule_constraints))
-    # raise
-    # # Call Mr. Python and assign him to a var
+    if python_return == []
+      @connection_test = "Sorry there isn't a conflict free schedule :/"
+    else
+      @connection_test = python_return
+    end
 
+    # Ok, so to interpret the return correctly:
+    # schedule is a list[tuple(int1, int2, int3), etc...]
+    # int1 = Timeslot index
+    # int2 = Room index
+    # int3 = Group index
 
-    # If var = solved -> Read the p2r that was generated
-    # If var = unsolveable -> give user the bad news
-
-    # Read the return and populate the rehearsals
 
   end
 end
+
+# python3 lib/assets/python/ruby_z3_bridge.py "{\"rooms\":[[4,[\"piano\",\"wheelchair\"]],[5,[\"piano\"]],[3,[\"piano\"]],[8,[\"piano\"]],[6,[\"piano\"]],[6,[]],[7,[]],[6,[]],[4,[]],[8,[\"wheelchair\"]]],\"musicians_groups\":[[[4,6,10,11,12,13,14,15],[]],[[0,2,9,12,16,17,18,19],[\"piano\",\"wheelchair\"]],[[1,5,7],[\"piano\"]],[[7,11,15],[]],[[0,6,16],[\"wheelchair\"]],[[3,8,9],[]],[[3,10,18],[]],[[1,4,8],[\"piano\"]],[[2,5,17],[\"piano\",\"wheelchair\"]],[[13,14,19],[]]],\"person_count\":20,\"timeslots_count\":24,\"number_of_rehearsals\":3}"

@@ -16,14 +16,29 @@ z3_parameters = json.loads(json_input)
 # "person_count"
 # "number_of_rehearsals"
 
+print(z3_parameters)
+
 rooms = z3_parameters["rooms"]
 musicians_groups = z3_parameters["musicians_groups"]
 person_count = z3_parameters["person_count"]
 timeslots_count = z3_parameters["timeslots_count"]
 number_of_rehearsals = z3_parameters["number_of_rehearsals"]
 
+print("rooms: ")
+print(rooms)
+print("musicians groups: ")
+print(musicians_groups)
+print("person count: ")
+print(person_count)
+print("number of timeslots: ")
+print(timeslots_count)
+print("number of rehearsals: ")
+print(number_of_rehearsals)
+
+print("START-TIME")
 print(datetime.now())
 schedule = solve_and_extract(rooms, musicians_groups, person_count, timeslots_count, number_of_rehearsals)
+print("FINISH-TIME")
 print(datetime.now())
 
 # schedule is a list[tuple(int1, int2, int3), etc...]
