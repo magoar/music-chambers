@@ -1,7 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -18,4 +19,11 @@
 
 .navbar-lewagon .navbar-brand {
   padding-left: 20px;
+}
+
+
+.nav-link {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
 }
