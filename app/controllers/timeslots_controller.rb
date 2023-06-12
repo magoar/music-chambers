@@ -3,6 +3,10 @@ class TimeslotsController < ApplicationController
 
   end
 
+  def new
+
+  end
+
   def create
     @timeslot = Timeslot.new(timeslot_params)
     @timeslot.festival = @festival
