@@ -3,7 +3,7 @@
     <div class= "pt-3">
       <%= simple_form_for([@festival, @group]) do |f| %>
         <%= f.input :name %>
-        <%= f.association :musicians, collection: @musicians, as: :check_boxes %>
+        <%= f.association :musicians, collection: @musicians.order('name ASC'), as: :check_boxes %>
         <%= f.submit "Add Group", class: "btn btn-success" %>
       <% end %>
     </div>
