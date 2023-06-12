@@ -10,8 +10,12 @@ class MusiciansController < ApplicationController
   def create
     @musician = Musician.new(musician_params)
     @musician.festival = @festival
-    @musician.save
-    redirect_to festival_musicians_path(@festival), status: :see_other
+    if @musician.save
+      redirect_to festival_musicians_path(@festival), status: :see_other
+    else
+      @musicians = @festival.musicians # this line instanciates the musicians of a festival again for the render
+      render :index, locals: { musicians: @musicians }, status: :unprocessable_entity
+    end
   end
 
   def destroy
