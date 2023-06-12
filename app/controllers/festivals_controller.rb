@@ -2,11 +2,12 @@ class FestivalsController < ApplicationController
   before_action :find_festival, only: [:show, :destroy, :update]
 
   def index
+    @festivals = current_user.festivals
     @festival = Festival.new
-    @festivals = Festival.all
   end
 
   def create
+    @festivals = current_user.festivals
     @festival = Festival.new(festival_params)
     @festival.user = current_user
     @festival.save
@@ -25,6 +26,9 @@ class FestivalsController < ApplicationController
   end
 
   def update
+    @festival = Festival.find(params[:id])
+    @festival.update(festival_params)
+    redirect_to festival_path, status: :see_other
   end
 
   private
