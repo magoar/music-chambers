@@ -11,4 +11,6 @@ class Festival < ApplicationRecord
   validates :rehearsals_per_group, comparison: { greater_than: 0 }
   # scope for creating a custom query of the database. Show new created items on top.
   scope :ordered, -> { order(created_at: :desc) }
+  # active storage
+  has_one_attached :photo
 end

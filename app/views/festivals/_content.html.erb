@@ -1,5 +1,10 @@
 <div class="card-show">
-  <img src="https://www.germany.travel/media/redaktion/staedte_kultur_content/Berlin_Brandenburger_Tor_im_Sonnenuntergang_Leitmotiv_German_Summer_Cities.jpg" />
+  <% if @festival.photo.attached? %>
+    <%= cl_image_tag @festival.photo.key, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <img src='https://npr.brightspotcdn.com/dims4/default/6adaacc/2147483647/strip/true/crop/4000x2668+0+0/resize/1760x1174!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fipr%2Ffiles%2F202006%2Fjanine_jansen_new_york_phil.jpg'/>
+  <% end %>
+  <%# <img src="https://www.germany.travel/media/redaktion/staedte_kultur_content/Berlin_Brandenburger_Tor_im_Sonnenuntergang_Leitmotiv_German_Summer_Cities.jpg" /> %>
   <div class="card-show-infos p-4">
     <div>
       <h4><%= @festival.name %></h4>

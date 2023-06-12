@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :festivals
   validates :email, uniqueness: true
+  # active storage
+  has_one_attached :photo
 end
