@@ -2,7 +2,7 @@ class FestivalsController < ApplicationController
   before_action :find_festival, only: [:show, :destroy, :update]
 
   def index
-    @festivals = current_user.festivals
+    @festivals = current_user.festivals.ordered
     @festival = Festival.new
   end
 

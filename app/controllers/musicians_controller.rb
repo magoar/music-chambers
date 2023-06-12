@@ -3,7 +3,8 @@ class MusiciansController < ApplicationController
 
   def index
     @festival = Festival.find(params[:festival_id])
-    @musicians = @festival.musicians
+    # @musicians = @festival.musicians
+    @musicians = @festival.musicians.ordered
     @musician = Musician.new
   end
 

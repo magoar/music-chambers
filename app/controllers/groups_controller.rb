@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   layout "workspace"
 
   def index
-    @groups = @festival.groups
+    @groups = @festival.groups.ordered
     @group = Group.new
     @musicians = @festival.musicians
   end
