@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
   def find_festival
     @festival = Festival.find_by(id: params[:festival_id])
   end
+
+  def after_sign_in_path_for(_resource)
+    festivals_path
+  end
 end
