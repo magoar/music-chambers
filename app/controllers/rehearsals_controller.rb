@@ -1,2 +1,0 @@
-class RehearsalsController < ApplicationController
-end
