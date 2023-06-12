@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
 
   def index
     @festival = Festival.find(params[:festival_id])
-    @rooms = @festival.rooms
+    @rooms = @festival.rooms.ordered
     @room = Room.new
   end
 

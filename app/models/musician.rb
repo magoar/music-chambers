@@ -7,4 +7,6 @@ class Musician < ApplicationRecord
   has_many :rehearsals, through: :groups
   validates :name, uniqueness: true, presence: true
   validates :instrument, presence: true
+  # scope for creating a custom query of the database. Show new created items on top.
+  scope :ordered, -> { order(created_at: :desc) }
 end
