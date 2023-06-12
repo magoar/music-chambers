@@ -1,10 +1,10 @@
 <div class="container form-container bg-white p-4 border">
-    <h3>Group</h3>
+    <h3>Add a Group</h3>
     <div class= "pt-3">
       <%= simple_form_for([@festival, @group]) do |f| %>
         <%= f.input :name %>
         <%= f.association :musicians, collection: @musicians, as: :check_boxes %>
-        <%= f.submit "Add Group", class: "btn btn-success" %>
+        <%= f.submit "Save", class: "btn btn-success" %>
       <% end %>
     </div>
 </div>
