@@ -1,360 +1,256 @@
 
 
 <div class="container infos-container d-flex justify-content-center">
-<%= link_to new_festival_schedule_path do %>
-  <button class = "btn btn-success p-3">Create Schedule</button>
-<% end %>
+  <%= link_to new_festival_schedule_path do %>
+    <button class = "btn btn-success p-3">Create Schedule</button>
+  <% end %>
 </div>
 
 
 
 
-<div class="container">
-    <div class="timetable-img text-center">
-        <img src="img/content/timetable.png" alt="">
-    </div>
-    <div class="table-responsive">
+
+<div class="container mt-5 schedule-card">
+  <h4>Rehearsal Schedule for <%= @festival.name %> </h4>
+    <div class="table-responsive mt-3 ">
         <table class="table table-bordered text-center">
             <thead>
-                <tr class="bg-light-gray">
-                    <th class="text-uppercase">Time
-                    </th>
-                    <th class="text-uppercase">Monday</th>
-                    <th class="text-uppercase">Tuesday</th>
-                    <th class="text-uppercase">Wednesday</th>
-                    <th class="text-uppercase">Thursday</th>
-                    <th class="text-uppercase">Friday</th>
-                    <th class="text-uppercase">Saturday</th>
+                <tr >
+                    <th class="text-uppercase header-row">Time</th>
+                    <th class="text-uppercase header-row">Monday</th>
+                    <th class="text-uppercase header-row">Tuesday</th>
+                    <th class="text-uppercase header-row">Wednesday</th>
+                    <th class="text-uppercase header-row">Thursday</th>
+                    <th class="text-uppercase header-row">Friday</th>
+                    <th class="text-uppercase header-row">Saturday</th>
                 </tr>
             </thead>
+
+<!--COLORS: class="bg- lightred, yellow, green, pink, yellow, sky, purple-->
             <tbody>
+                <!--1st Timeslot-->
                 <tr>
-                    <td class="align-middle">10:00 am-<div>11:30 am</div></td>
-                    <td>
+                    <td class="align-middle header-column">10:00 am-<div>11:30 am</div></td>
+                    <!--Day 1-->
+                    <td class="cell text-start">
                       <div>
-                        <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Group1</span>
+                        <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Dance</span>
                         <span class="margin-10px-top font-size14"> -> Room A</span>
                       </div>
                       <br>
                       <div>
-                        <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Group2</span>
+                        <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Yoga</span>
                         <span class="margin-10px-top font-size14"> -> Room B</span>
                       </div>
                     </td>
-                    <td>
+
+                    <!--Day 2-->
+                    <td class="cell text-start">
                       <div>
-                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Group3</span>
+                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Music</span>
                         <span class="margin-10px-top font-size14"> -> Room C</span>
                       </div>
                       <br>
                       <div>
-                        <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Group4</span>
+                        <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Art</span>
                         <span class="margin-10px-top font-size14"> -> Room D</span>
                       </div>
                     </td>
 
-                    <td>
+                    <!--Day 3-->
+                    <td class="cell text-start">
                         <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
 
                     </td>
-                    <td>
+
+                    <!--Day 4-->
+                    <td class="cell text-start">
                         <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span>
 
                     </td>
-                    <td>
+
+                    <!--Day 5-->
+                    <td class="cell text-start">
                         <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
 
                     </td>
-                    <td>
-                        <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+
+                    <!--Day 6-->
+                    <td class="cell text-start">
 
                     </td>
                 </tr>
 
+                 <!--2nd Timeslot-->
                 <tr>
-                    <td class="align-middle">11:30 am-<div>1:00 pm</div></td>
-                    <td>
+                    <td class="align-middle header-column ">11:30 am-<div>1:00 pm</div></td>
+
+                    <!--Day 1-->
+                    <td class="cell text-start">
+                      <div>
                         <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
+                        <span class="margin-10px-top font-size14"> -> Room A</span>
+                      </div>
+                      <br>
+                      <div>
+                        <span class="bg-red padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Sport</span>
+                        <span class="margin-10px-top font-size14"> -> Room B</span>
+                      </div>
+                    </td>
+
+                    <!--Day 2-->
+                    <td class="cell text-start">
 
                     </td>
-                    <td class="bg-light-gray">
 
-                    </td>
-                    <td>
+                    <!--Day 3-->
+                    <td class="cell text-start">
                         <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
 
                     </td>
-                    <td>
+
+                    <!--Day 4-->
+                    <td class="cell text-start">
                         <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
 
                     </td>
-                    <td>
+
+                    <!--Day 5-->
+                    <td class="cell text-start">
                         <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
 
                     </td>
-                    <td class="bg-light-gray">
+
+                    <!--Day 6-->
+                    <td class="cell text-start">
 
                     </td>
                 </tr>
 
+                <!--LUNCH-->
                 <tr>
-                    <td class="align-middle">1:00pm-<div>3:00 pm</div></td>
+                    <td class="align-middle header-column ">1:00pm-<div>3:00 pm</div></td>
                     <td>
-                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
-
+                        LUNCH
                     </td>
                     <td>
-                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
-
+                        LUNCH
                     </td>
                     <td>
-                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
-
+                        LUNCH
                     </td>
                     <td>
-                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
-
+                        LUNCH
                     </td>
                     <td>
-                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
-
+                        LUNCH
                     </td>
                     <td>
-                        <span class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Break</span>
-
+                        LUNCH
                     </td>
                 </tr>
 
+                <!--3rd Timeslot-->
                 <tr>
-                    <td class="align-middle">3:00 pm-<div>4:30 pm</div></td>
-                    <td class="bg-light-gray">
+                    <td class="align-middle header-column ">3:00 pm-<div>4:30 pm</div></td>
 
+                    <!--Day 1-->
+                    <td class="cell text-start">
+                      <div>
+                        <span class="bg-darkblue padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Code</span>
+                        <span class="margin-10px-top font-size14"> -> Room A</span>
+                      </div>
+                      <br>
+                      <div>
+                        <span class="bg-orange padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Books</span>
+                        <span class="margin-10px-top font-size14"> -> Room B</span>
+                      </div>
                     </td>
-                    <td>
+
+                    <!--Day 2-->
+                    <td class="cell text-start">
+                      <div>
+                        <span class="bg-lila padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">Pilates</span>
+                        <span class="margin-10px-top font-size14"> -> Room A</span>
+                      </div>
+                      <br>
+                      <div>
                         <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Art</span>
-
+                      </div>
                     </td>
-                    <td>
+
+                    <!--Day 3-->
+                    <td class="cell text-start">
                         <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Dance</span>
 
                     </td>
-                    <td>
+
+                    <!--Day 4-->
+                    <td class="cell text-start">
                         <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
 
                     </td>
-                    <td class="bg-light-gray">
+
+                    <!--Day 5-->
+                    <td class="cell text-start">
 
                     </td>
-                    <td>
-                        <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
+
+                    <!--Day 6-->
+                    <td class="cell text-start">
 
                     </td>
+
                 </tr>
 
+                <!--4th Timeslot-->
                 <tr>
-                    <td class="align-middle">4:30pm-<div>6:00 pm</div></td>
-                    <td>
-                        <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+                    <td class="align-middle header-column ">4:30pm-<div>6:00 pm</div></td>
 
+                    <!--Day 1-->
+                    <td class="cell text-start">
+                      <div>
+                        <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
+                      </div>
+                      <br>
+                      <div>
+                        <span class="bg-darkgreen padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">French</span>
+                      </div>
                     </td>
-                    <td>
+
+                    <!--Day 2-->
+                    <td class="cell text-start">
                         <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
 
                     </td>
-                    <td class="bg-light-gray">
+
+                    <!--Day 3-->
+                    <td class="cell text-start">
 
                     </td>
-                    <td>
+
+                    <!--Day 4-->
+                    <td class="cell text-start">
                         <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">English</span>
 
                     </td>
-                    <td>
+
+                    <!--Day 5-->
+                    <td class="cell text-start">
                         <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Yoga</span>
 
                     </td>
-                    <td>
-                        <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">Music</span>
 
+                    <!--Day 6-->
+                    <td class="cell text-start">
                     </td>
                 </tr>
+
+
+
+
+
             </tbody>
         </table>
     </div>
 </div>
-
-
-<!------ Include the above in your HEAD tag ---------->
-
-<%# <div class="container mt-5">
-	<div class="row">
-
-	  <div class="col-md-3">
-      <div class="schedule-warp">
-          <div class="day-one">DAY 1: June 21 Monday</div>
-             <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">10:00-11:30</span>
-                    <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">11:30-13:00</span>
-                   <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">13:00-15:00</span>
-                   <span class="schedule-start">Lunch</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">15:00-16:30</span>
-                    <span class="schedule-start"> Rehearsal </span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">16:30-18:00</span>
-                   <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-            </div>
-          </div>
-
-
-
-	  <div class="col-md-3">
-      <div class="schedule-warp">
-          <div class="day-one">DAY 2: June 22 Tuesday</div>
-             <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">10:00-11:30</span>
-                    <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">11:30-13:00</span>
-                   <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">13:00-15:00</span>
-                   <span class="schedule-start">Lunch</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">15:00-16:30</span>
-                    <span class="schedule-start"> Rehearsal </span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">16:30-18:00</span>
-                   <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-            </div>
-          </div>
-
-	  <div class="col-md-3">
-      <div class="schedule-warp">
-          <div class="day-one">DAY 3: June 23 Wednesday</div>
-             <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">10:00-11:30</span>
-                    <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">11:30-13:00</span>
-                   <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">13:00-15:00</span>
-                   <span class="schedule-start">Lunch</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">15:00-16:30</span>
-                    <span class="schedule-start"> Rehearsal </span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">16:30-18:00</span>
-                   <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-            </div>
-          </div>
-
-
-
- 	  <div class="col-md-3">
-      <div class="schedule-warp">
-          <div class="day-one">DAY 4: June 24 Thursday</div>
-             <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">10:00-11:30</span>
-                    <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">11:30-13:00</span>
-                   <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">13:00-15:00</span>
-                   <span class="schedule-start">Lunch</span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">15:00-16:30</span>
-                    <span class="schedule-start"> Rehearsal </span>
-               </div>
-              </div>
-
-              <div class="schedule-card">
-               <div class="insidebox">
-                   <span class="schedule-tag">16:30-18:00</span>
-                   <span class="schedule-start">Rehearsal</span>
-               </div>
-              </div>
-
-            </div>
-          </div>
-
-	</div>
-</div> %>

@@ -1,7 +1,23 @@
-
-.bg-light-gray {
-  background-color: #f7f7f7;
+.schedule-card {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border: 1px solid rgb(235,235,235);
 }
+
+.schedule-card h4 {
+  text-align: center;
+}
+
+.header-row, .header-column {
+  background-color: #c9c9c9 !important;
+}
+
+.cell {
+  background-color: #ffffff !important;
+}
+
+
 .table-bordered thead td, .table-bordered thead th {
   border-bottom-width: 2px;
 }
@@ -14,45 +30,22 @@
 }
 
 
-.bg-sky.box-shadow {
-  box-shadow: 0px 5px 0px 0px #00a2a7
-}
 
-.bg-orange.box-shadow {
-  box-shadow: 0px 5px 0px 0px #af4305
-}
-
-.bg-green.box-shadow {
-  box-shadow: 0px 5px 0px 0px #4ca520
-}
-
-.bg-yellow.box-shadow {
-  box-shadow: 0px 5px 0px 0px #dcbf02
-}
-
-.bg-pink.box-shadow {
-  box-shadow: 0px 5px 0px 0px #e82d8b
-}
-
-.bg-purple.box-shadow {
-  box-shadow: 0px 5px 0px 0px #8343e8
-}
-
-.bg-lightred.box-shadow {
-  box-shadow: 0px 5px 0px 0px #d84213
-}
-
-
-.bg-sky {
-  background-color: #02c2c7
-}
 
 .bg-orange {
-  background-color: #e95601
+  background-color: #e96c24
+}
+
+.bg-red {
+  background-color: #b52424
 }
 
 .bg-green {
   background-color: #5bbd2a
+}
+
+.bg-darkgreen {
+  background-color: #205604
 }
 
 .bg-yellow {
@@ -64,12 +57,24 @@
 }
 
 .bg-purple {
-  background-color: #9d60ff
+  background-color: #762af2
 }
 
-.bg-lightred {
-  background-color: #ff5722
+.bg-darkblue{
+  background-color: #183adf
 }
+
+.bg-sky {
+  background-color: #02c2c7
+}
+
+.bg-lila {
+  background-color: #c169e2
+}
+
+
+
+
 
 .padding-15px-lr {
   padding-left: 15px;
@@ -108,89 +113,3 @@
   vertical-align: top;
   border-top: 1px solid #dee2e6;
 }
-
-
-// .schedule-warp{
-//   padding-right:20px;
-//   padding-left:20px;
-//   padding: 20px 30px;
-//   border: solid 1px #ddd;
-//   background-color: #f5f5f5;
-//   -webkit-transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89);
-//   transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89);
-// }
-// .schedule{
-//   background-color:#fff;
-// }
-// .schedule-warp:hover {
-//   box-shadow: 0 6px 20px rgba(0,0,0,.07);
-//   border: solid 1px rgba(100,40,145,.97);
-// }
-// .schedule{
-//   padding:100px 0px;
-//   background-color: #ecedf0;
-//    font-family: 'Titillium Web';
-// }
-// .schedule-tag{
-//   color:#fff;
-//   background-color: #6164b2;
-//   padding:3px 8px;
-//   margin-right: 15px;
-//   width: 90px;
-//   font-family: 'Titillium Web';
-//   text-align: center;
-// }
-// .schedule-header span{
-//   display: inline-block;
-//   margin-right:25px;
-// }
-// .schedule-header{
-//   margin-bottom:80px;
-// }
-// .schedule-card{
-//   position: relative;
-//   margin-bottom: 0.7em;
-// }
-// .schedule-card:hover .insidebox {
-//   transform: scale(1.033);
-//   /* box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1); */
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-// }
-// .schedule-card:hover:after {
-//   background: #8a56d1;
-//   width: 25px;
-// }
-// .schedule-card:after {
-//   height: 2px;
-//   width: 22px;
-//   background: #ddd;
-//   content: '';
-//   position: absolute;
-//   top: 50%;
-//   left: -22px;
-//   transition: all 0.3s ease-in;
-// }
-// .insidebox {
-//   box-shadow: 0 0px 5px rgba(0,0,0,.07);
-//   background: #ffffff;
-//   width: 100%;
-//   height: auto;
-//   display: flex;
-//   display: -moz-flex;
-//   display: -ms-flex;
-//   display: -webkit-flex;
-//   display: -o-flex;
-//   -webkit-align-items: center;
-//   align-items: center;
-//   padding: 10px 20px;
-//   color: #6164B2;
-//   transition: all 0.2s ease-in;
-// /*    justify-content: center;*/
-// }
-
-// .day-one{
-//   margin-bottom:50px;
-//   font-weight: bold;
-//   font-size: 20px;
-//   color: #6164B2;
-//   }
