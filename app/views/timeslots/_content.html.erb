@@ -10,9 +10,8 @@
       </div>
     </div>
   </div>
-<% index = 0 %>
 <% timeslots.each do |timeslot| %>
 
-  <%= render "timeslot_row", timeslot: timeslot, index: index %>
+  <%= render "timeslot_row", timeslot: timeslot %>
 
 <% end %>
