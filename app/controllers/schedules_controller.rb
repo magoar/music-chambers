@@ -5,6 +5,13 @@ class SchedulesController < ApplicationController
   layout "workspace"
   def index
     @festival = Festival.find(params[:festival_id])
+    @columns = (@festival.start_date..@festival.end_date).to_a
+    @columns.prepend("The Times")
+    @rows = @festival.timeslots
+    colors = ["bg-orange", "bg-red", "bg-green", "bg-darkgreen", "bg-yellow", "bg-pink", "bg-purple", "bg-darkblue", "bg-sky", "bg-lila"]
+    group_names = @festival.groups.map(&:name)
+    @group_colors = group_names.zip(colors).to_h
+
   end
 
   def new
