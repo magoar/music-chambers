@@ -41,6 +41,7 @@ class SchedulesController < ApplicationController
     }
 
     argument = JSON.generate(schedule_constraints)
+    raise
     # Maybe we will need Rails.root to set the correct rootpath on heroku
     python_return = `python3 lib/assets/python/ruby_z3_bridge.py '#{argument}'`
     @connection_test = python_return
@@ -61,4 +62,7 @@ class SchedulesController < ApplicationController
   end
 end
 
+# the big testthing
 # python3 lib/assets/python/ruby_z3_bridge.py "{\"rooms\":[[4,[\"piano\",\"wheelchair\"]],[5,[\"piano\"]],[3,[\"piano\"]],[8,[\"piano\"]],[6,[\"piano\"]],[6,[]],[7,[]],[6,[]],[4,[]],[8,[\"wheelchair\"]]],\"musicians_groups\":[[[4,6,10,11,12,13,14,15],[]],[[0,2,9,12,16,17,18,19],[\"piano\",\"wheelchair\"]],[[1,5,7],[\"piano\"]],[[7,11,15],[]],[[0,6,16],[\"wheelchair\"]],[[3,8,9],[]],[[3,10,18],[]],[[1,4,8],[\"piano\"]],[[2,5,17],[\"piano\",\"wheelchair\"]],[[13,14,19],[]]],\"person_count\":20,\"timeslots_count\":24,\"number_of_rehearsals\":3}"
+# the smol testthing
+# python3 lib/assets/python/ruby_z3_bridge.py "{\"rooms\":[[3,[\"wheelchair\"]],[3,[\"piano\"]]],\"musicians_groups\":[[[0,1],[\"wheelchair\"]],[[1,3],[\"piano\"]],[[2,3],[\"piano\"]],[[0,2],[\"wheelchair\"]]],\"person_count\":4,\"timeslots_count\":8,\"number_of_rehearsals\":2}"
