@@ -1,6 +1,3 @@
 require 'date'
 
-module PresentableFestival
-  puts "In my_module.rb"
-  # add code here
-end
+# Here I will put the nice presentable cool data from Andria
