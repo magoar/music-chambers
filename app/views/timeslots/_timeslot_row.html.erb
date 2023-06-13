@@ -2,13 +2,17 @@
   <div class="notification p-3">
     <div class="notification-content d-flex flex-column">
       <div class="row">
-        <div class="col-6" >
-            <p style= "margin: 0"><%= timeslot.start_time.strftime("%I:%M:%S %p") %> </p>
-          </div>
-          <div class="col-6">
-            <p class= "ps-4"><%= timeslot.end_time.strftime("%I:%M:%S %p") %></p>
-          </div>
+        <div class="col-2" >
+          <% index = index + 1 %>
+          <p style= "margin: 0"><%= index %> </p>
         </div>
+        <div class="col-4" >
+            <p style= "margin: 0"><%= timeslot.start_time.strftime("%I:%M %p") %> </p>
+        </div>
+        <div class="col-4">
+            <p class= "ps-4"><%= timeslot.end_time.strftime("%I:%M %p") %></p>
+        </div>
+      </div>
     </div>
 
     <div class="notification-actions <%= 'd-none' if timeslot.errors.any? %>" data-edit-element-target="actions">
