@@ -3,6 +3,7 @@ from datetime import datetime
 
 from z3 import *
 
+
 def assign(rooms, musicians_groups, person_count, timeslots_count, number_of_rehearsals):
     raw_attributes: set[str] = set()
     for room in rooms:
@@ -113,17 +114,20 @@ def assign(rooms, musicians_groups, person_count, timeslots_count, number_of_reh
     # Declare Timeslot
     TimeSlotDatatype = Datatype("Timeslot")
     for timeslot_index in range(timeslots_count):
-        TimeSlotDatatype.declare(f"timeslot_{timeslot_index}")
+        TimeSlotDatatype.declare(f"Timeslot {timeslot_index}")
     TimeslotSort = TimeSlotDatatype.create()
 
     timeslots_consts = []
     for timeslot_index in range(timeslots_count):
         new_timeslot = Const(f"Timeslot {timeslot_index}", TimeslotSort)
 
-        solver.add(new_timeslot == TimeslotSort.__getattribute__(f"timeslot_{timeslot_index}"))
+        # Define timeslot to be distinct from every other previously defined timeslot
+        for prev_timeslot in timeslots_consts:
+            solver.add(new_timeslot != prev_timeslot)
 
         timeslots_consts.append(new_timeslot)
 
+    TimeslotSetSort = SetSort(TimeslotSort)
     set_of_timeslots = EmptySet(TimeslotSort)
     for timeslot in timeslots_consts:
         set_of_timeslots = SetAdd(set_of_timeslots, timeslot)
@@ -131,8 +135,6 @@ def assign(rooms, musicians_groups, person_count, timeslots_count, number_of_reh
     Timeslot_room_to_group = Function("Timeslot and Room to Group", TimeslotSort, RoomSort, GroupSort)
 
     # No group can play in two rooms at the same time
-    # This is technically covered by "no two assignments can overlap"
-    # But since it is higher level, it might guide the solution?
     for room_a, room_b in itertools.combinations(rooms_consts, 2):
         for timeslots_const in timeslots_consts:
             # A group does not play twice at the same time
@@ -140,6 +142,14 @@ def assign(rooms, musicians_groups, person_count, timeslots_count, number_of_reh
                 Timeslot_room_to_group(timeslots_const, room_a) == Timeslot_room_to_group(timeslots_const, room_b),
                 Timeslot_room_to_group(timeslots_const, room_a) == no_group_const
             ))
+
+    # Any assigned group must exist or be the NoGroup
+    for timeslots_const in timeslots_consts:
+        allowed_results_set = SetAdd(set_of_groups, no_group_const)
+        for room_const in rooms_consts:
+            result = Timeslot_room_to_group(timeslots_const, room_const)
+            result_set = SetAdd(EmptySet(GroupSort), result)
+            solver.add(SetIntersect(allowed_results_set, result_set) != EmptySet(GroupSort))
 
     # for time slot t, every group size is smaller than it's room size
     for timeslots_const in timeslots_consts:
@@ -179,11 +189,11 @@ def assign(rooms, musicians_groups, person_count, timeslots_count, number_of_reh
         time_slots_for_group = []
         # There are `number of rehearsals` pairs of time/place where a group plays
         for session_idx in range(number_of_rehearsals):
-            time_slot_in_hall = Const(f"Session {session_idx} for group {group_idx} timeslot", TimeslotSort)
+            time_slot_placeholder = Const(f"Session {session_idx} for group {group_idx} timeslot", TimeslotSort)
             room_placeholder = Const(f"Session {session_idx} for group {group_idx} room", RoomSort)
-            time_slots_for_group.append(time_slot_in_hall)
+            time_slots_for_group.append(time_slot_placeholder)
 
-            solver.add(Timeslot_room_to_group(time_slot_in_hall, room_placeholder) == group_const)
+            solver.add(Timeslot_room_to_group(time_slot_placeholder, room_placeholder) == group_const)
 
         # And all of these pairs happen at a different time
         for time_slot_a, time_slot_b in itertools.combinations(time_slots_for_group, 2):
@@ -192,9 +202,17 @@ def assign(rooms, musicians_groups, person_count, timeslots_count, number_of_reh
     if concert_hall_const is not None:
         # over all time slots, each group is assigned to the concert hall at least once
         for idx, group_const in enumerate(groups_consts):
-            time_slot_in_hall = Const(f"timeslot for main hall group {idx}", TimeslotSort)
+            time_slot_placeholder = Const(f"timeslot for main hall group {idx}", TimeslotSort)
+            set_of_placeholder = EmptySet(TimeslotSort)
+            set_of_placeholder = SetAdd(set_of_placeholder, time_slot_placeholder)
             solver.add(
-                Timeslot_room_to_group(time_slot_in_hall, concert_hall_const) == group_const
+                Exists(
+                    time_slot_placeholder,
+                    And(
+                        Timeslot_room_to_group(time_slot_placeholder, concert_hall_const) == group_const,
+                        SetIntersect(set_of_placeholder, set_of_timeslots) != EmptySet(TimeslotSort)
+                    )
+                )
             )
 
     return solver, groups_consts, timeslots_consts, rooms_consts
@@ -245,7 +263,7 @@ def solve_and_extract(rooms, musicians_groups, person_count, timeslots_count, nu
 
 if __name__ == "__main__":
     solver, group_consts, timeslots_consts, rooms_consts = assign(
-        *base_data()
+        *group_index_issue()
     )
 
     print(datetime.now())

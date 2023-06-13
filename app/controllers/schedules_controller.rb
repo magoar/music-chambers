@@ -8,21 +8,37 @@ class SchedulesController < ApplicationController
 
   def new
     @festival = Festival.find(params[:festival_id])
-    # Here all the information that need to go into the json are put together:
-    person_count = @festival.musicians.count
-    timeslots_count = (@festival.slots_per_day * ((@festival.end_date - @festival.start_date).to_i + 1))
-    number_of_rehearsals = @festival.rehearsals_per_group
+    schedule_constraints = generate_schedule_constraints(@festival)
+    argument = JSON.generate(schedule_constraints)
+    # Maybe we will need Rails.root to set the correct rootpath on heroku
+    python_return = `python3 lib/assets/python/ruby_z3_bridge.py '#{argument}'`
+    schedule_solution = JSON.parse(python_return)
+
+    if schedule_solution == []
+      @connection_test = "Sorry, there isn't a conflict free schedule. Try again with less rehearsals"
+    else
+      @connection_test = schedule_solution.class # For testing
+      make_rehearsals_from_solution(schedule_solution, @festival)
+    end
+  end
+
+  private
+
+  def generate_schedule_constraints(festival)
+    person_count = festival.musicians.count
+    timeslots_count = (festival.slots_per_day * ((festival.end_date - festival.start_date).to_i + 1))
+    number_of_rehearsals = festival.rehearsals_per_group
     # the rooms must be generated as an array of arrays:
     # the first element of each array is the size of the group as an integer
     # the second element is an array of it's requirements as strings
-    rooms_array = @festival.rooms.map do |room|
+    rooms_array = festival.rooms.map do |room|
       [room.size, room.requirements.map(&:name)]
     end
     # the groups must be generated as an array of arrays:
     # the first element of each array is an array of the id of each musician
     # the second element of each array is an array of the attributes of each group
-    groups = @festival.groups
-    musicians = @festival.musicians
+    groups = festival.groups
+    musicians = festival.musicians
     musicians_groups = groups.map do |group|
       [
         group.musicians.map do |musician|
@@ -39,25 +55,21 @@ class SchedulesController < ApplicationController
       "timeslots_count" => timeslots_count,
       "number_of_rehearsals" => number_of_rehearsals
     }
+    return schedule_constraints
+  end
 
-    argument = JSON.generate(schedule_constraints)
-    raise
-    # Maybe we will need Rails.root to set the correct rootpath on heroku
-    python_return = `python3 lib/assets/python/ruby_z3_bridge.py '#{argument}'`
-    @connection_test = python_return
-
-    if python_return == []
-      @connection_test = "Sorry there isn't a conflict free schedule :/"
-    else
-      @connection_test = python_return
+  def make_rehearsals_from_solution(solution, festival)
+    solution.each do |tuple|
+      Rehearsal.create(
+        
+      )
     end
-
     # Ok, so to interpret the return correctly:
     # schedule is a list[tuple(int1, int2, int3), etc...]
     # int1 = Timeslot index
     # int2 = Room index
     # int3 = Group index
-
+    # for each list-item I need to make a rehearsal
 
   end
 end
