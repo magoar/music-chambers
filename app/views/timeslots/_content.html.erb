@@ -1,0 +1,18 @@
+<div class="header p-3">
+    <div class="header-content d-flex flex-column">
+      <div class="row">
+        <div class="col-6" >
+            <i class="fa-solid fa-user pe-2"></i><span>Start Time</span>
+          </div>
+          <div class="col-6">
+            <i class="fa-solid fa-music pe-2"></i><span>End Time</span>
+          </div>
+        </div>
+    </div>
+  </div>
+
+<% timeslots.each do |timeslot| %>
+
+  <%= render "timeslot_row", timeslot: timeslot %>
+
+<% end %>

@@ -5,6 +5,9 @@
             <%= link_to "Festival", festival_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_path(@festival))}" %>
           </li>
           <li>
+            <%= link_to "Time slots", festival_timeslots_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_timeslots_path(@festival))}" %>
+          </li>
+          <li>
             <%= link_to "Musicians", festival_musicians_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_musicians_path(@festival))}" %>
           </li>
           <li>
