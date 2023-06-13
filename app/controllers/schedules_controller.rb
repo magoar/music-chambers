@@ -1,4 +1,5 @@
 require 'json'
+require 'date'
 
 class SchedulesController < ApplicationController
   layout "workspace"
@@ -19,9 +20,12 @@ class SchedulesController < ApplicationController
     else
       @connection_test = schedule_solution.class # For testing
       make_rehearsals_from_solution(schedule_solution, @festival)
+      @connection_test = @festival.rehearsals.map do |n|
+        [n.id, n.room.id, n.group.id]
+      end
     end
+    raise
   end
-
   private
 
   def generate_schedule_constraints(festival)
@@ -59,18 +63,27 @@ class SchedulesController < ApplicationController
   end
 
   def make_rehearsals_from_solution(solution, festival)
+    festival.rehearsals.each(&:destroy)
+    # solution is an array[tuple(int0, int1, int2), etc...]
+    # int0 = Timeslot index
+    # int1 = Room index
+    # int2 = Group index
+    rooms = festival.rooms
+    groups = festival.groups
+    date_range = (festival.start_date..festival.end_date).to_a
     solution.each do |tuple|
-      Rehearsal.create(
-        
+      new_rehearsal = Rehearsal.new(
+        festival_id: festival.id,
+        room: rooms[tuple[1]],
+        group: groups[tuple[2]],
+        rehearsal_date: date_range[tuple[0] / festival.timeslots.count],
+        start_time: festival.timeslots[tuple[0] % festival.timeslots.count].start_time
       )
+      unless festival.rehearsals.where(group: new_rehearsal.group).count == festival.rehearsals_per_group
+        new_rehearsal.save
+      end
     end
-    # Ok, so to interpret the return correctly:
-    # schedule is a list[tuple(int1, int2, int3), etc...]
-    # int1 = Timeslot index
-    # int2 = Room index
-    # int3 = Group index
-    # for each list-item I need to make a rehearsal
-
+    # Cleaning up additional slots
   end
 end
 
