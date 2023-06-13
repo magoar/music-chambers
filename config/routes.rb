@@ -10,9 +10,10 @@ Rails.application.routes.draw do
     resources :musicians, only: [:index, :create, :update]
     resources :groups, only: [:index, :create, :update]
     resources :schedules, only: [:index, :new]
-    resources :timeslots, only: [:index, :new, :create, :update]
+    resources :timeslots, only: [:index, :create, :update]
   end
-  resources :musicians, only: [:destroy, :index, :update]
+  resources :musicians, only: [:destroy]
   resources :rooms, only: [:destroy]
   resources :groups, only: [:destroy]
+  resources :timeslots, only: [:destroy]
 end

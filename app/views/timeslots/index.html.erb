@@ -1,16 +1,15 @@
-
 <div class="container infos-container">
 
   <div class="row">
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-8">
       <%# RENDER CONTENT PARTIAL  HERE! %>
-      <%= render "festivals/content" %>
+      <%= render "content", timeslots: @timeslots %>
     </div>
 
-    <div id="form" class="col-12 col-lg-6">
+    <div id="form" class="col-12 col-lg-4">
       <%# RENDER FORM PARTIAL  HERE! %>
-      <%= render "festivals/form" %>
+      <%= render "form" %>
     </div>
 
   </div>

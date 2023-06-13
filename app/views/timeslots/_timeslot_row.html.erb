@@ -1,0 +1,29 @@
+<div data-controller="edit-element" data-edit-element-target="card">
+  <div class="notification p-3">
+    <div class="notification-content d-flex flex-column">
+      <div class="row">
+        <div class="col-6" >
+            <p style= "margin: 0"><%= timeslot.start_time.strftime("%I:%M:%S %p") %> </p>
+          </div>
+          <div class="col-6">
+            <p class= "ps-4"><%= timeslot.end_time.strftime("%I:%M:%S %p") %></p>
+          </div>
+        </div>
+    </div>
+
+    <div class="notification-actions <%= 'd-none' if timeslot.errors.any? %>" data-edit-element-target="actions">
+
+      <a data-action="click->edit-element#displayForm"><i class="fas fa-pencil-alt"></i></a>
+
+      <%= link_to timeslot_path(timeslot), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+         <i class="far fa-trash-alt"></i>
+      <% end %>
+    </div>
+  </div>
+     <%= simple_form_for([@festival, timeslot], html: { class: timeslot.errors.any? ? " p-3 bg-light mb-2" : "d-none p-3 bg-light mb-2", data: { edit_element_target: "form", action: "submit->edit-element#update" } }) do |f| %>
+      <%= f.input :start_time %>
+      <%= f.input :end_time %>
+      <%= f.submit "Save", class: "btn btn-success" %>
+      <button data-edit-element-target="close" class="btn btn-secondary">Close</button>
+    <% end %>
+</div>
