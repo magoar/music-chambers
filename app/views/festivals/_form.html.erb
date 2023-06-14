@@ -4,8 +4,8 @@
       <%= simple_form_for(@festival) do |f| %>
         <%= f.input :name %>
         <%= f.input :location %>
-        <%= f.input :start_date %>
-        <%= f.input :end_date %>
+        <%= f.input :start_date, :label => "Rehearsal Start Date" %>
+        <%= f.input :end_date, :label => "Rehearsal End Date" %>
         <%= f.input :rehearsals_per_group %>
         <%= f.input :photo, as: :file %>
         <%= f.submit "Update", class: "btn btn-success" %>
