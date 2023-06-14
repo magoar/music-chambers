@@ -13,14 +13,29 @@
 
 .header-row, .header-column {
   background-color: #c9c9c9 !important;
+  font-weight: bold;
 }
+
+
 
 .cell {
   background-color: #ffffff !important;
 }
 
+.rehearsal-cell{
+  min-width: 100px;
+}
+
 .text-left {
   text-align: left !important;
+}
+
+.ellipsis{
+  max-width: 120px;
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 
@@ -90,9 +105,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.margin-10px-bottom {
-  margin-bottom: 10px;
-}
+
 .border-radius-5 {
   border-radius: 5px;
 }

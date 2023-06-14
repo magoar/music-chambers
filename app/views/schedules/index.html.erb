@@ -13,9 +13,10 @@
             <thead>
                 <tr>
                     <th>
+                      <i class="fa-regular fa-clock"></i>
                     </th>
                     <% (@festival.start_date..@festival.end_date).each do |date| %>
-                      <th class="text-uppercase header-row"> <%= date.strftime("%b %d") %> </th>
+                      <th class="header-row"> <%= date.strftime("%b %d") %> </th>
                     <% end %>
                 </tr>
             </thead>
@@ -33,9 +34,9 @@
                           <br>
                           <% rehearsals.each do |r| %>
 
-                          <div >
+                          <div class="rehearsal-cell">
                             <div>
-                              <span  class="<%= @group_colors[r.group.name] %> padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13 "><%= r.group.name %></span>
+                              <span  class="<%= @group_colors[r.group.name] %> ellipsis padding-5px-tb padding-15px-lr border-radius-5 text-white font-size16 xs-font-size13 "><%= r.group.name %></span>
                             </div>
                             <div>
                               <span class="margin-10px-top font-size14"><i class="fa-solid fa-arrow-right pe-2"></i><%= r.room.name %></span>
