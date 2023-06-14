@@ -2,8 +2,8 @@
   <h3>Add a Timeslot</h3>
     <div class= "pt-3">
       <%= simple_form_for([@festival, @timeslot]) do |f| %>
-        <%= f.input :start_time %>
-        <%= f.input :end_time %>
+        <%= f.input :start_time, :minute_step => 15 %>
+        <%= f.input :end_time, :minute_step => 15 %>
         <%= f.submit "Save", class: "btn btn-success" %>
       <% end %>
     </div>
