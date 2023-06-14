@@ -5,7 +5,7 @@
 <div class="container mt-5 schedule-card">
 
 
-  <h4>Rehearsal Schedule for <%= @festival.name %> </h4>
+  <h4>Rehearsal Schedule - <%= @festival.name %> </h4>
 
 
     <div class="table-responsive mt-3 ">
@@ -13,30 +13,36 @@
             <thead>
                 <tr>
                     <th>
+                      <i class="fa-regular fa-clock"></i>
                     </th>
                     <% (@festival.start_date..@festival.end_date).each do |date| %>
-                      <th class="text-uppercase header-row"> <%= date.strftime("%b %d") %> </th>
+                      <th class="header-row"> <%= date.strftime("%b %d") %> </th>
                     <% end %>
                 </tr>
             </thead>
 
 
-    <!--COLORS: class="bg- lightred, yellow, green, pink, yellow, sky, purple, -->
             <tbody>
-                <!--1st Timeslot-->
                 <% @rows.each do |row| %>
                   <tr>
                     <% @columns.each_with_index do |col, colind| %>
                       <% if colind == 0 %>
                         <td class="align-middle header-column timeslot"><%= row.start_time.strftime("%k:%M") %>-<div><%= row.end_time.strftime("%k:%M") %></div></td>
                       <% else %>
-                        <td>
+                        <td class="text-left cell">
                           <% rehearsals = @festival.rehearsals.where(start_time: row.start_time, rehearsal_date: col) %>
+                          <br>
                           <% rehearsals.each do |r| %>
-                          <div>
-                            <span  class="<%= @group_colors[r.group.name] %> padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13"><%= r.group.name %></span>
-                            <span class="margin-10px-top font-size14"> -> <%= r.room.name %></span>
+
+                          <div class="rehearsal-cell">
+                            <div>
+                              <span  class="<%= @group_colors[r.group.name] %> ellipsis padding-5px-tb padding-15px-lr border-radius-5 text-white font-size16 xs-font-size13 "><%= r.group.name %></span>
+                            </div>
+                            <div>
+                              <span class="margin-10px-top font-size14"><i class="fa-solid fa-arrow-right pe-2"></i><%= r.room.name %></span>
+                            </div>
                           </div>
+                          <br>
                           <% end %>
                         </td>
                       <% end %>
