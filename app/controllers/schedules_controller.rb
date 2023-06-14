@@ -8,10 +8,7 @@ class SchedulesController < ApplicationController
     @columns = (@festival.start_date..@festival.end_date).to_a
     @columns.prepend("The Times")
     @rows = @festival.timeslots
-    colors = ["bg-orange", "bg-red", "bg-green", "bg-darkgreen", "bg-yellow", "bg-pink", "bg-purple", "bg-darkblue", "bg-sky", "bg-lila"]
-    group_names = @festival.groups.map(&:name)
-    @group_colors = group_names.zip(colors).to_h
-    
+    @group_colors = group_color_generator(@festival)
 
   end
 
@@ -34,7 +31,29 @@ class SchedulesController < ApplicationController
     end
     raise
   end
+
   private
+
+  def group_color_generator(festival)
+    colors = [
+      "bg-orange",
+      "bg-red",
+      "bg-green",
+      "bg-darkgreen",
+      "bg-yellow",
+      "bg-pink",
+      "bg-purple",
+      "bg-darkblue",
+      "bg-sky",
+      "bg-lila"
+    ]
+    group_names = festival.groups.map(&:name)
+    group_colors = group_names.map.with_index do |name, index|
+      color = colors[index % colors.length]
+      [name, color]
+    end.to_h
+    return group_colors
+  end
 
   def generate_schedule_constraints(festival)
     person_count = festival.musicians.count
