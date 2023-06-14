@@ -18,6 +18,8 @@
               <% if requirement %>
                 <span class="badge rounded-pill instrument-pill"><%= requirement.name if requirement.name == "piano" %></span>
                 <span class="badge rounded-pill need-pill"><%= requirement.name if requirement.name == "wheelchair" %></span>
+                <span class="badge rounded-pill hall-pill"><%= requirement.name if requirement.name == "concert hall" %></span>
+
               <% end %>
             <% end %>
           </p>
