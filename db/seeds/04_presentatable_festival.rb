@@ -45,7 +45,7 @@ Room.create(
 )
 Room.create(
   name: "Sala Bach",
-  size: 8,
+  size: 6,
   festival: Festival.find_by(name: "Autumn Sounds")
 )
 Room.create(
@@ -55,7 +55,7 @@ Room.create(
 )
 Room.create(
   name: "Salone",
-  size: 6,
+  size: 8,
   festival: Festival.find_by(name: "Autumn Sounds")
 )
 
