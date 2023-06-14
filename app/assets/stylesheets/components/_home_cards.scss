@@ -1,8 +1,4 @@
-.home-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 60px;
-}
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
@@ -39,6 +35,12 @@
   }
 }
 
+.home-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 60px;
+}
+
 .home-cards .card {
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -47,6 +49,9 @@
 
 .home-cards p{
   text-align: center;
+  font-family: "PT Sans Caption", "sans-serif";
+  font-size: 18px;
+  opacity: .6;
 }
 
 
