@@ -10,5 +10,5 @@ p User.last.valid?
 p "Creating Piano and Wheelchair Requirements"
 Requirement.create(name: "piano")
 Requirement.create(name: "wheelchair")
-Requirement.create(name: "ConcertHall")
+Requirement.create(name: "concert hall")
 p Requirement.last.valid?
