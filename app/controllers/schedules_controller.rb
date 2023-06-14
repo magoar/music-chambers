@@ -11,6 +11,7 @@ class SchedulesController < ApplicationController
     colors = ["bg-orange", "bg-red", "bg-green", "bg-darkgreen", "bg-yellow", "bg-pink", "bg-purple", "bg-darkblue", "bg-sky", "bg-lila"]
     group_names = @festival.groups.map(&:name)
     @group_colors = group_names.zip(colors).to_h
+    
 
   end
 
