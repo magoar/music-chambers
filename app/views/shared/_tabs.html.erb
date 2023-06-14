@@ -5,9 +5,6 @@
             <%= link_to "Festival", festival_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_path(@festival))}" %>
           </li>
           <li>
-            <%= link_to "Time slots", festival_timeslots_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_timeslots_path(@festival))}" %>
-          </li>
-          <li>
             <%= link_to "Musicians", festival_musicians_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_musicians_path(@festival))}" %>
           </li>
           <li>
@@ -15,6 +12,9 @@
           </li>
           <li>
             <%= link_to "Rooms", festival_rooms_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_rooms_path(@festival))}" %>
+          </li>
+          <li>
+            <%= link_to "Timeslots", festival_timeslots_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_timeslots_path(@festival))}" %>
           </li>
           <li>
             <%= link_to "Schedule", festival_schedules_path(@festival), class: "tab-underlined #{"active" if current_page?(festival_schedules_path(@festival))}" %>

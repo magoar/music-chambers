@@ -27,7 +27,7 @@
                   <tr>
                     <% @columns.each_with_index do |col, colind| %>
                       <% if colind == 0 %>
-                        <td class="align-middle header-column timeslot"><%= row.start_time.strftime("%k:%M") %>-<div><%= row.end_time.strftime("%k:%M") %></div></td>
+                        <td class="align-middle header-column timeslot"><%= row.start_time.strftime("%l:%M %P") %>-<div><%= row.end_time.strftime("%l:%M %P") %></div></td>
                       <% else %>
                         <td class="text-left cell">
                           <% rehearsals = @festival.rehearsals.where(start_time: row.start_time, rehearsal_date: col) %>
