@@ -7,7 +7,6 @@ Festival.create(
   location: "Berlin",
   start_date: Date.parse('01-12-2023'),
   end_date: Date.parse('06-12-2023'),
-  slots_per_day: 4,
   rehearsals_per_group: 3
 )
 p Festival.last.valid?

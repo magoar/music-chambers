@@ -7,7 +7,6 @@ Festival.create(
   location: "Montepulciano",
   start_date: Date.parse('10-09-2023'),
   end_date: Date.parse('16-09-2023'),
-  slots_per_day: 4,
   rehearsals_per_group: 3
 )
 

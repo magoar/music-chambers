@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_143941) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_140502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,7 +47,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_143941) do
     t.string "location"
     t.date "start_date"
     t.date "end_date"
-    t.integer "slots_per_day"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
