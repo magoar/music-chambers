@@ -7,7 +7,6 @@ user: User.find_by(email: "max@web.de"),
 location: "Venezia",
 start_date: Date.parse('01-12-2018'),
 end_date: Date.parse('02-12-2018'),
-slots_per_day: 4,
 rehearsals_per_group: 2
 )
 

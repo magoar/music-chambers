@@ -57,7 +57,7 @@ class SchedulesController < ApplicationController
 
   def generate_schedule_constraints(festival)
     person_count = festival.musicians.count
-    timeslots_count = (festival.slots_per_day * ((festival.end_date - festival.start_date).to_i + 1))
+    timeslots_count = (festival.timeslots.count * ((festival.end_date - festival.start_date).to_i + 1))
     number_of_rehearsals = festival.rehearsals_per_group
     # the rooms must be generated as an array of arrays:
     # the first element of each array is the size of the group as an integer
