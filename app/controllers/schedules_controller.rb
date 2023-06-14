@@ -9,6 +9,7 @@ class SchedulesController < ApplicationController
     @columns.prepend("The Times")
     @rows = @festival.timeslots
     @group_colors = group_color_generator(@festival)
+
   end
 
   def new
