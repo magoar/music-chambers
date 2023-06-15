@@ -27,14 +27,12 @@ class SchedulesController < ApplicationController
   end
 
   def new
-    @festival = Festival.find(params[:festival_id])
-    schedule_constraints = generate_schedule_constraints(@festival)
+    schedule_constraints = generate_schedule_constraints
     argument = JSON.generate(schedule_constraints)
     # Maybe we will need Rails.root to set the correct rootpath on heroku
     python_return = `python3 lib/assets/python/ruby_z3_bridge.py '#{argument}'`
-    sleep 1
     schedule_solution = JSON.parse(python_return)
-    make_rehearsals_from_solution(schedule_solution, @festival)
+    make_rehearsals_from_solution(schedule_solution)
     # if schedule_solution == []
     #   @connection_test = "Sorry, there isn't a conflict free schedule. Try again with less rehearsals"
     # else
@@ -69,21 +67,21 @@ class SchedulesController < ApplicationController
     end.to_h
   end
 
-  def generate_schedule_constraints(festival)
-    person_count = festival.musicians.count
-    timeslots_count = (festival.timeslots.count * ((festival.end_date - festival.start_date).to_i + 1))
-    number_of_rehearsals = festival.rehearsals_per_group
+  def generate_schedule_constraints
+    person_count = @festival.musicians.count
+    timeslots_count = (@festival.timeslots.count * ((@festival.end_date - @festival.start_date).to_i + 1))
+    number_of_rehearsals = @festival.rehearsals_per_group
     # the rooms must be generated as an array of arrays:
     # the first element of each array is the size of the group as an integer
     # the second element is an array of it's requirements as strings
-    rooms_array = festival.rooms.map do |room|
+    rooms_array = @festival.rooms.map do |room|
       [room.size, room.requirements.map(&:name)]
     end
     # the groups must be generated as an array of arrays:
     # the first element of each array is an array of the id of each musician
     # the second element of each array is an array of the attributes of each group
-    groups = festival.groups
-    musicians = festival.musicians
+    groups = @festival.groups
+    musicians = @festival.musicians
     musicians_groups = groups.map do |group|
       [
         group.musicians.map do |musician|
@@ -103,24 +101,24 @@ class SchedulesController < ApplicationController
     return schedule_constraints
   end
 
-  def make_rehearsals_from_solution(solution, festival)
-    festival.rehearsals.each(&:destroy)
+  def make_rehearsals_from_solution(solution)
+    @festival.rehearsals.each(&:destroy)
     # solution is an array[tuple(int0, int1, int2), etc...]
     # int0 = Timeslot index
     # int1 = Room index
     # int2 = Group index
-    rooms = festival.rooms
-    groups = festival.groups
-    date_range = (festival.start_date..festival.end_date).to_a
+    rooms = @festival.rooms
+    groups = @festival.groups
+    date_range = (@festival.start_date..@festival.end_date).to_a
     solution.each do |tuple|
       new_rehearsal = Rehearsal.new(
-        festival_id: festival.id,
+        festival_id: @festival.id,
         room: rooms[tuple[1]],
         group: groups[tuple[2]],
-        rehearsal_date: date_range[tuple[0] / festival.timeslots.count],
-        start_time: festival.timeslots[tuple[0] % festival.timeslots.count].start_time
+        rehearsal_date: date_range[tuple[0] / @festival.timeslots.count],
+        start_time: @festival.timeslots[tuple[0] % @festival.timeslots.count].start_time
       )
-      unless festival.rehearsals.where(group: new_rehearsal.group).count == festival.rehearsals_per_group
+      unless @festival.rehearsals.where(group: new_rehearsal.group).count == @festival.rehearsals_per_group
         new_rehearsal.save
       end
     end
