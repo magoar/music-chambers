@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicChambers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+
+  <h4>Rehearsal Schedule for <%= @festival.name %> </h4>
+
+
+    <div class="table-responsive mt-3 ">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <% (@festival.start_date..@festival.end_date).each do |date| %>
+                      <th class="text-uppercase header-row"> <%= date.strftime("%b %d") %> </th>
+                    <% end %>
+                </tr>
+            </thead>
+
+
+    <!--COLORS: class="bg- lightred, yellow, green, pink, yellow, sky, purple, -->
+            <tbody>
+                <!--1st Timeslot-->
+                <% @rows.each do |row| %>
+                  <tr>
+                    <% @columns.each_with_index do |col, colind| %>
+                      <% if colind == 0 %>
+                        <td class="align-middle header-column timeslot"><%= row.start_time.strftime("%k:%M") %>-<div><%= row.end_time.strftime("%k:%M") %></div></td>
+                      <% else %>
+                        <td>
+                          <% rehearsals = @festival.rehearsals.where(start_time: row.start_time, rehearsal_date: col) %>
+                          <% rehearsals.each do |r| %>
+                          <div>
+                            <span  class="<%= @group_colors[r.group.name] %> padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13"><%= r.group.name %></span>
+                            <span class="margin-10px-top font-size14"> -> <%= r.room.name %></span>
+                          </div>
+                          <% end %>
+                        </td>
+                      <% end %>
+                    <% end %>
+                  </tr>
+                <% end %>
+
+
+            </tbody>
+        </table>
+    </div>
+  </body>
+</html>

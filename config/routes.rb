@@ -9,8 +9,11 @@ Rails.application.routes.draw do
     resources :rooms, only: [:index, :create, :update]
     resources :musicians, only: [:index, :create, :update]
     resources :groups, only: [:index, :create, :update]
-    resources :schedules, only: [:index, :new]
+    resources :schedules, only: [:index, :new, :show]
     resources :timeslots, only: [:index, :create, :update]
+    member do
+      get :pdf
+    end
   end
   resources :musicians, only: [:destroy]
   resources :rooms, only: [:destroy]

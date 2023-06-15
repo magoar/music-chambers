@@ -31,6 +31,19 @@ class FestivalsController < ApplicationController
     redirect_to festival_path, status: :see_other
   end
 
+  def pdf
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string(template: 'schedules/index', locals: { festival: @festival })
+        send_data Grover.new(html).to_pdf, filename: "#{@festival.name}.pdf", type: "application/pdf"
+      end
+    end
+    # html = render_to_string(template: 'schedules/index.html.erb', locals: { festival: @festival })
+    # pdf = Grover.new(html).to_pdf
+    # send_data pdf, filename: 'your_file_name.pdf', type: 'application/pdf', disposition: 'attachment'
+  end
+
   private
 
   def find_festival

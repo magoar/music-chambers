@@ -1,3 +1,8 @@
+
+<%# <%= link_to 'Generate PDF', pdf_festival_path(@festival) %>
+
+<%= render "table", locals: { festival: @festival, rows: @rows, columns: @columns, group_colors: @group_colors } %>
+
 <% if @festival.rehearsals.empty? %>
   <div class="container d-flex justify-content-center">
     <button class="btn btn-success">Generate Schedule</button>
