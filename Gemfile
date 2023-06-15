@@ -82,3 +82,6 @@ end
 
 # cloudinary gem to upload pictures
 gem "cloudinary"
+
+# grover to transform html into pdf
+gem 'grover'

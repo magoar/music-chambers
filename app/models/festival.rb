@@ -13,4 +13,5 @@ class Festival < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
   # active storage
   has_one_attached :photo
+  has_one_attached :pdf
 end
