@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  get "/generate_pdf/:festival_id", to: "schedules#generate_pdf", as: :generate_pdf
   # Defines the root path route ("/")
   # root "articles#index"
   resources :festivals do
@@ -11,9 +11,6 @@ Rails.application.routes.draw do
     resources :groups, only: [:index, :create, :update]
     resources :schedules, only: [:index, :new, :show]
     resources :timeslots, only: [:index, :create, :update]
-    member do
-      get :pdf
-    end
   end
   resources :musicians, only: [:destroy]
   resources :rooms, only: [:destroy]

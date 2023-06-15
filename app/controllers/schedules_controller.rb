@@ -10,18 +10,21 @@ class SchedulesController < ApplicationController
     @columns = (@festival.start_date..@festival.end_date).to_a
     @columns.prepend("The Times")
     @rows = @festival.timeslots
+    @group_colors = group_color_generator
   end
 
   def generate_pdf
+    @festival = Festival.find(params[:festival_id])
     @columns = (@festival.start_date..@festival.end_date).to_a
     @columns.prepend("The Times")
     @rows = @festival.timeslots
-    html = render_to_string(layout: 'pdf', locals: { festival: @festival, rows: @rows, columns: @columns, group_colors: @group_colors })
+    @group_colors = group_color_generator
+    html = render_to_string(partial: 'schedules/pdf', locals: { festival: @festival, rows: @rows, columns: @columns, group_colors: @group_colors })
     pdf = Grover.new(html, format: 'A4', margin: { top: '20px', left: '20px', right: "20px" }, viewport: { width: 640, height: 480}, wait_until: 'domcontentloaded', prefer_css_page_size: true, landscape: true, scale: 0.8, printBackground: true, display_url: "http://localhost:3000").to_pdf
-    # send_data(pdf, filename: 'schedule.pdf', type: 'application/pdf', disposition: 'attachment', identify: false)
-    File.open("schedule.pdf", "w") { |f| f << pdf.force_encoding("UTF-8") }
-    @festival.pdf.attach(io: File.open("schedule.pdf"), filename: "schedule.pdf", content_type: "application/pdf", identify: false)
-    @festival.save
+    send_data(pdf, filename: "#{@festival.name}.pdf", type: 'application/pdf', disposition: 'attachment')
+    # File.open("schedule.pdf", "w") { |f| f << pdf.force_encoding("UTF-8") }
+    # @festival.pdf.attach(io: File.open("schedule.pdf"), filename: "schedule.pdf", content_type: "application/pdf", identify: false)
+    # @festival.save
   end
 
   def new
@@ -41,8 +44,6 @@ class SchedulesController < ApplicationController
         [n.id, n.room.id, n.group.id]
       end
     end
-    # make pdf of the festival plan
-    generate_pdf
     raise
   end
 
