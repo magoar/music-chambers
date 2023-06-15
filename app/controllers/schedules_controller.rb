@@ -3,7 +3,7 @@ require 'date'
 
 class SchedulesController < ApplicationController
   layout "workspace"
-  before_action :set_group_colors, only: [:index, :new]
+  before_action :group_color_generator(@festival), only: [:index, :generate_pdf]
 
   def index
     @festival = Festival.find(params[:festival_id])
@@ -13,7 +13,6 @@ class SchedulesController < ApplicationController
   end
 
   def generate_pdf
-    @rows = @festival.timeslots
     @columns = (@festival.start_date..@festival.end_date).to_a
     @columns.prepend("The Times")
     @rows = @festival.timeslots
@@ -49,15 +48,29 @@ class SchedulesController < ApplicationController
 
   private
 
-  def set_group_colors
-    colors = ["bg-orange", "bg-red", "bg-green", "bg-darkgreen", "bg-yellow", "bg-pink", "bg-purple", "bg-darkblue", "bg-sky", "bg-lila"]
-    group_names = @festival.groups.map(&:name)
-    @group_colors = group_names.zip(colors).to_h
+  def group_color_generator(festival)
+    colors = [
+      "bg-orange",
+      "bg-red",
+      "bg-green",
+      "bg-darkgreen",
+      "bg-yellow",
+      "bg-pink",
+      "bg-purple",
+      "bg-darkblue",
+      "bg-sky",
+      "bg-lila"
+    ]
+    group_names = festival.groups.map(&:name)
+    @group_colors = group_names.map.with_index do |name, index|
+      color = colors[index % colors.length]
+      [name, color]
+    end.to_h
   end
 
   def generate_schedule_constraints(festival)
     person_count = festival.musicians.count
-    timeslots_count = (festival.slots_per_day * ((festival.end_date - festival.start_date).to_i + 1))
+    timeslots_count = (festival.timeslots.count * ((festival.end_date - festival.start_date).to_i + 1))
     number_of_rehearsals = festival.rehearsals_per_group
     # the rooms must be generated as an array of arrays:
     # the first element of each array is the size of the group as an integer

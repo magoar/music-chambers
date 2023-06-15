@@ -47,7 +47,7 @@
         <div class="notification-content">
           <div class="row">
             <div class="col-5">
-              <p><strong><%= festival.name.capitalize %></strong>
+              <p><strong><%= festival.name %></strong>
             </div>
             <div class="col-3">
               <%= festival.location %></p>
@@ -86,9 +86,8 @@
           <%= simple_form_for @festival do |f| %>
             <%= f.input :name %>
             <%= f.input :location %>
-            <%= f.input :start_date %>
-            <%= f.input :end_date %>
-            <%= f.input :slots_per_day %>
+            <%= f.input :start_date, :label => "Rehearsal Start Date" %>
+            <%= f.input :end_date, :label => "Rehearsal End Date" %>
             <%= f.input :rehearsals_per_group %>
             <%= f.input :photo, as: :file %>
             <div class="modal-footer">

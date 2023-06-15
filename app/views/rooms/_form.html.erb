@@ -3,7 +3,7 @@
     <div class= "pt-3">
       <%= simple_form_for([@festival, @room]) do |f| %>
         <%= f.input :name %>
-        <%= f.input :size %>
+        <%= f.input :size, :label => "Capacity" %>
         <%= f.association :requirements, :label => "Facilities", as: :check_boxes  %>
         <%= f.submit "Save", class: "btn btn-success" %>
       <% end %>

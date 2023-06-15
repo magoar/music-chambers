@@ -10,11 +10,9 @@
       <h4><%= @festival.name %></h4>
       <br>
       <p><strong>Location:   </strong><%= @festival.location %></p>
-      <p><strong>Start:   </strong><%= @festival.start_date.strftime("%b %d, %Y") %></p>
-      <p><strong>End:   </strong><%= @festival.end_date.strftime("%b %d, %Y") %></p>
+      <p><strong>Rehearsal Dates:   </strong><%= @festival.start_date.strftime("%b %d, %Y") %> - </strong><%= @festival.end_date.strftime("%b %d, %Y") %></p>
       <br>
-      <p><strong>Rehearsal slots per day:   </strong><%= @festival.slots_per_day %></p>
-      <p><strong>Rehearsals per group:   </strong><%= @festival.rehearsals_per_group %></p>
+      <p><strong>Number of rehearsals per group:   </strong><%= @festival.rehearsals_per_group %></p>
     </div>
 
   </div>

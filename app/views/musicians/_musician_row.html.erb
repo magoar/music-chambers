@@ -3,7 +3,7 @@
     <div class="notification-content d-flex flex-column">
       <div class="row">
         <div class="col-4" >
-            <h5 style= "margin: 0"><%= musician.name %> </h5>
+            <p><strong><%= musician.name %> </strong></p>
           </div>
           <div class="col-4">
             <p class= "ps-2"><%= musician.instrument %></p>
@@ -13,6 +13,8 @@
               <% if requirement %>
                 <span class="badge rounded-pill instrument-pill"><%= requirement.name if requirement.name == "piano" %></span>
                 <span class="badge rounded-pill need-pill"><%= requirement.name if requirement.name == "wheelchair" %></span>
+                <span class="badge rounded-pill hall-pill"><%= requirement.name if requirement.name == "concert hall" %></span>
+
               <% end %>
             <% end %>
           </div>
