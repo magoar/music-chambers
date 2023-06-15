@@ -44,7 +44,7 @@ class SchedulesController < ApplicationController
         [n.id, n.room.id, n.group.id]
       end
     end
-    raise
+    redirect_to festival_schedules_path(@festival)
   end
 
   private
