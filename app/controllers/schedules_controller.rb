@@ -3,7 +3,7 @@ require 'date'
 
 class SchedulesController < ApplicationController
   layout "workspace"
-  before_action :group_color_generator(@festival), only: [:index, :generate_pdf]
+  before_action :group_color_generator, only: [:index, :generate_pdf]
 
   def index
     @festival = Festival.find(params[:festival_id])
@@ -48,7 +48,7 @@ class SchedulesController < ApplicationController
 
   private
 
-  def group_color_generator(festival)
+  def group_color_generator
     colors = [
       "bg-orange",
       "bg-red",
@@ -61,7 +61,7 @@ class SchedulesController < ApplicationController
       "bg-sky",
       "bg-lila"
     ]
-    group_names = festival.groups.map(&:name)
+    group_names = @festival.groups.map(&:name)
     @group_colors = group_names.map.with_index do |name, index|
       color = colors[index % colors.length]
       [name, color]
