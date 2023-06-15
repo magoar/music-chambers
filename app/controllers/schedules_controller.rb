@@ -3,7 +3,6 @@ require 'date'
 
 class SchedulesController < ApplicationController
   layout "workspace"
-  before_action :group_color_generator, only: [:index, :generate_pdf]
 
   def index
     @festival = Festival.find(params[:festival_id])
@@ -14,17 +13,17 @@ class SchedulesController < ApplicationController
   end
 
   def generate_pdf
-    @festival = Festival.find(params[:festival_id])
-    @columns = (@festival.start_date..@festival.end_date).to_a
-    @columns.prepend("The Times")
-    @rows = @festival.timeslots
-    @group_colors = group_color_generator
-    html = render_to_string(partial: 'schedules/pdf', locals: { festival: @festival, rows: @rows, columns: @columns, group_colors: @group_colors })
-    pdf = Grover.new(html, format: 'A4', margin: { top: '20px', left: '20px', right: "20px" }, viewport: { width: 640, height: 480}, wait_until: 'domcontentloaded', prefer_css_page_size: true, landscape: true, scale: 0.8, printBackground: true, display_url: "http://localhost:3000").to_pdf
-    send_data(pdf, filename: "#{@festival.name}.pdf", type: 'application/pdf', disposition: 'attachment')
-    # File.open("schedule.pdf", "w") { |f| f << pdf.force_encoding("UTF-8") }
-    # @festival.pdf.attach(io: File.open("schedule.pdf"), filename: "schedule.pdf", content_type: "application/pdf", identify: false)
-    # @festival.save
+    # @festival = Festival.find(params[:festival_id])
+    # @columns = (@festival.start_date..@festival.end_date).to_a
+    # @columns.prepend("The Times")
+    # @rows = @festival.timeslots
+    # @group_colors = group_color_generator
+    # html = render_to_string(partial: 'schedules/pdf', locals: { festival: @festival, rows: @rows, columns: @columns, group_colors: @group_colors })
+    # pdf = Grover.new(html, format: 'A4', margin: { top: '20px', left: '20px', right: "20px" }, viewport: { width: 640, height: 480}, wait_until: 'domcontentloaded', prefer_css_page_size: true, landscape: true, scale: 0.8, printBackground: true, display_url: "http://localhost:3000").to_pdf
+    # send_data(pdf, filename: "#{@festival.name}.pdf", type: 'application/pdf', disposition: 'attachment')
+    # # File.open("schedule.pdf", "w") { |f| f << pdf.force_encoding("UTF-8") }
+    # # @festival.pdf.attach(io: File.open("schedule.pdf"), filename: "schedule.pdf", content_type: "application/pdf", identify: false)
+    # # @festival.save
   end
 
   def new
@@ -33,17 +32,18 @@ class SchedulesController < ApplicationController
     argument = JSON.generate(schedule_constraints)
     # Maybe we will need Rails.root to set the correct rootpath on heroku
     python_return = `python3 lib/assets/python/ruby_z3_bridge.py '#{argument}'`
+    sleep 1
     schedule_solution = JSON.parse(python_return)
-
-    if schedule_solution == []
-      @connection_test = "Sorry, there isn't a conflict free schedule. Try again with less rehearsals"
-    else
-      @connection_test = schedule_solution.class # For testing
-      make_rehearsals_from_solution(schedule_solution, @festival)
-      @connection_test = @festival.rehearsals.map do |n|
-        [n.id, n.room.id, n.group.id]
-      end
-    end
+    make_rehearsals_from_solution(schedule_solution, @festival)
+    # if schedule_solution == []
+    #   @connection_test = "Sorry, there isn't a conflict free schedule. Try again with less rehearsals"
+    # else
+    #   @connection_test = schedule_solution.class # For testing
+    #   make_rehearsals_from_solution(schedule_solution, @festival)
+    #   @connection_test = @festival.rehearsals.map do |n|
+    #     [n.id, n.room.id, n.group.id]
+    #   end
+    # end
     redirect_to festival_schedules_path(@festival)
   end
 
