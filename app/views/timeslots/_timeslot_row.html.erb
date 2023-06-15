@@ -21,8 +21,8 @@
     </div>
   </div>
      <%= simple_form_for([@festival, timeslot], html: { class: timeslot.errors.any? ? " p-3 bg-light mb-2" : "d-none p-3 bg-light mb-2", data: { edit_element_target: "form", action: "submit->edit-element#update" } }) do |f| %>
-      <%= f.input :start_time %>
-      <%= f.input :end_time %>
+      <%= f.input :start_time, :minute_step => 15 %>
+      <%= f.input :end_time, :minute_step => 15 %>
       <%= f.submit "Save", class: "btn btn-success" %>
       <button data-edit-element-target="close" class="btn btn-secondary">Close</button>
     <% end %>

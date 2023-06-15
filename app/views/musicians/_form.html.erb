@@ -5,7 +5,11 @@
         <%= f.input :name %>
         <%= f.input :instrument %>
         <%= f.association :requirements, as: :check_boxes %>
-        <%= f.submit "Save", class: "btn btn-success" %>
+        <% if @festival.rehearsals.empty? %>
+          <%= f.submit "Save", class: "btn btn-success" %>
+        <% else %>
+          <%= f.submit "Save", class: "btn btn-success", data: { turbo_confirm: "A schedule has already been created. By making changes, the schedule will be deleted. Do you want to proceed?"} %>
+        <% end %>
       <% end %>
     </div>
 </div>
