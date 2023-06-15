@@ -1,14 +1,13 @@
 <% if @festival.rehearsals.empty? %>
   <div class="container d-flex justify-content-center">
-    <button class="btn btn-success">Generate Schedule</button>
+    <button class="btn btn-success">Create Schedule</button>
   </div>
 <% else %>
   <div class="container d-flex justify-content-center">
-    <button >Regenerate Schedule</button>
+    <button class="btn btn-success me-3">Regenerate Schedule</button>
+    <%= link_to 'Download PDF', generate_pdf_path(@festival), class: "btn btn-secondary" %>
   </div>
-  <div class="container d-flex justify-content-center">
-    <%= link_to 'Generate PDF', class: "btn btn-primary" %>
-  </div>
+  <br>
 <% end %>
 
 <div class="container mt-5 schedule-card">
