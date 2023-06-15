@@ -4,7 +4,11 @@
       <%= simple_form_for([@festival, @timeslot]) do |f| %>
         <%= f.input :start_time, :minute_step => 15 %>
         <%= f.input :end_time, :minute_step => 15 %>
-        <%= f.submit "Save", class: "btn btn-success" %>
+        <% if @festival.rehearsals.empty? %>
+          <%= f.submit "Save", class: "btn btn-success" %>
+        <% else %>
+          <%= f.submit "Save", class: "btn btn-success", data: { turbo_confirm: "A schedule has already been created. By making changes, the schedule will be deleted. Do you want to proceed?"} %>
+        <% end %>
       <% end %>
     </div>
 </div>
